@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MovieCarousel = (props) => {
+const PopMovieCarousel = (props) => {
     return (
         <div>
             <p> Movie name: {props.movieTitle}</p>
@@ -9,4 +9,4 @@ const MovieCarousel = (props) => {
     )
 }
 
-export default MovieCarousel;
+export default PopMovieCarousel;

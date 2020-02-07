@@ -3,7 +3,8 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
 import instance from '../../HOC/axios-orders';
-import PopMovieCarousel from '../../Components/MovieCarousels/PopMovieCarousel'
+import Carousels from '../../Components/Carousels/Carousel';
+import ShowItem from '../../middleware/List';
 
 import config from '../../config/config';
 
@@ -14,6 +15,7 @@ class ShowPage extends Component {
     state = {
         testObj: {},
         popMovies: [],
+        popTV: [],
         pathImg: 'https://image.tmdb.org/t/p/w154',
         error: false
     }
@@ -32,6 +34,17 @@ class ShowPage extends Component {
             .then(res => {
                 const popMovies = res.data.results;
                 this.setState({ popMovies })
+            })
+            .catch(error => { this.setState({ error: true }) });
+
+        
+
+        instance.get(`discover/tv?sort_by=popularity.desc&api_key=${config.apiKey}`)
+            .then(res => {
+                const popTV = res.data.results;
+                this.setState({ popTV })
+                // console.log(popTV);
+                
             })
             .catch(error => { this.setState({ error: true }) });
 
@@ -58,20 +71,34 @@ class ShowPage extends Component {
             },
         };
 
+        ///  GATHER LIST OF MOVIES
         let movieShow = [...this.state.popMovies];
         // console.log(movieShow);
-
-        let allMovies = Object.keys(movieShow).map(mvKey => {
+        let allPopMovies = Object.keys(movieShow).map(mvKey => {
             return movieShow[mvKey];
-
         });
 
+        // const singleMovie = allMovies.map((item, i) => {
+        //     let movieTitle = item["title"];
+        //     let moviePic = this.state.pathImg + item["poster_path"]
+        //     return <Carousels key={i} movieTitle={movieTitle} poster={moviePic} />
+        // });
 
-        const singleMovie = allMovies.map((item, i) => {
-            let movieTitle = item["title"];
-            let moviePic = this.state.pathImg + item["poster_path"]
-            return <PopMovieCarousel key={i} movieTitle={movieTitle} poster={moviePic} />
-        })
+        const singleMovie = ShowItem(allPopMovies);
+
+
+        ///  GATHER LIST OF TV SHOWS
+        let tvShow = [...this.state.popTV];
+        let allTvShows = Object.keys(tvShow).map(mvKey => {
+            return tvShow[mvKey];
+        });
+        // const singleTvShow = allTvShows.map((item, i) => {
+        //     let movieTitle = item["title"];
+        //     let moviePic = this.state.pathImg + item["poster_path"]
+        //     return <PopMovieCarousel key={i} movieTitle={movieTitle} poster={moviePic} />
+        // });
+
+        const singleTvShow = ShowItem(allTvShows);
 
 
         return (
@@ -97,6 +124,27 @@ class ShowPage extends Component {
                         itemClass="carousel-item-padding-40-px">
 
                         {singleMovie}
+                    </Carousel>
+                    <br/>
+                    <Carousel
+                        swipeable={false}
+                        draggable={false}
+                        showDots={true}
+                        responsive={responsive}
+                        ssr={true} // means to render carousel on server-side.
+                        infinite={true}
+                        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+                        // autoPlaySpeed={1000}
+                        keyBoardControl={true}
+                        // customTransition="all .5"
+                        // transitionDuration={500}
+                        containerClass="carousel-container"
+                        removeArrowOnDeviceType={["tablet", "mobile"]}
+                        deviceType={this.props.deviceType}
+                        dotListClass="custom-dot-list-style"
+                        itemClass="carousel-item-padding-40-px">
+
+                        {singleTvShow}
                     </Carousel>
                 </div>
 

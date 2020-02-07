@@ -3,7 +3,7 @@ import React from 'react';
 const PopMovieCarousel = (props) => {
     return (
         <div>
-            <p> Movie name: {props.movieTitle}</p>
+            <p>{props.movieTitle}</p>
             <img src={props.poster} />
         </div>
     )

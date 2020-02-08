@@ -105,6 +105,7 @@ class ShowPage extends Component {
             <>
                 <div>
                     <h3>Main show page</h3>
+                    <h4>Popular movies</h4>
                     <Carousel
                         swipeable={false}
                         draggable={false}
@@ -126,6 +127,7 @@ class ShowPage extends Component {
                         {singleMovie}
                     </Carousel>
                     <br/>
+                    <h4>Popular series</h4>
                     <Carousel
                         swipeable={false}
                         draggable={false}

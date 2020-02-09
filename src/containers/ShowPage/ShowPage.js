@@ -2,20 +2,13 @@ import React, { Component } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-
 import instance from '../../HOC/axios-orders';
-import Carousels from '../../Components/Carousels/Carousel';
 import ShowItem from '../../middleware/List';
 
 import config from '../../config/config';
 
 class ShowPage extends Component {
 
-    constructor(props) {
-        super(props);
-        // this.handleOnClick = this.handleOnClick.bind(this);
-
-    }
 
     state = {
         testObj: {},
@@ -57,9 +50,6 @@ class ShowPage extends Component {
     }
 
     render() {
-        
-        const {isMainPage} = this.props;
-        console.log(isMainPage);
         
 
         const responsive = {

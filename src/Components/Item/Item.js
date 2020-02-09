@@ -1,7 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 const Item = (props) => {
-    console.log(props.location.state.isMainPage);
+
+    let properties = {...props};
+
+    useEffect(() => {function hide() {
+        properties.hideMainPage()
+    }
+    hide();
+    }, []);
+    
     
     return (
         <>

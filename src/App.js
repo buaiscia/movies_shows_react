@@ -8,11 +8,15 @@ import './App.css';
 
 class App extends Component {
 
-  
-  state = { isMainPage: true }
+  constructor(props) {
+    super(props);
+    this.state = { showMainPage : true}
+  }
 
-   
-  
+  hideMainPage = () => {
+    this.setState({ showMainPage: false})
+  }
+
 
   render() {
     
@@ -31,13 +35,15 @@ class App extends Component {
           <h1>Movie database app</h1>
           <Layout>
 
+            
             {/* <ShowPage /> */}
-            <ShowPage />
+            {this.state.showMainPage && <ShowPage />}
+
           </Layout>
           <Switch>
 
             {/* <Route path="/movie" render={(props) => <Item {...props} isId={props.id} />} /> */}
-            <Route exact path="/movie" component={Item} isMainPage={false} />
+            <Route exact path="/movie" render={ (props) => <Item hideMainPage={this.hideMainPage} {...props} />} />
             <Route path="/" />
           </Switch>
         </Router>

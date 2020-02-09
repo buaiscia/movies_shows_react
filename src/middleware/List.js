@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Carousels from '../Components/Carousels/Carousel';
 
 function showItem  (arr) {
@@ -9,11 +10,12 @@ function showItem  (arr) {
     return arr.map((item, i) => {
         let movieTitle = item["title"];
         let moviePic = pathImg + item["poster_path"];
-        console.log(moviePic);
+        let movieId = item["id"];
+        // console.log(moviePic);
         
         // console.log(moviePic);
         
-        return <Carousels key={i} movieTitle={movieTitle} poster={moviePic} />
+        return <Carousels key={i} id={movieId} movieTitle={movieTitle} poster={moviePic} />
     })
 }
 

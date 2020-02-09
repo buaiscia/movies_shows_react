@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
+
 import instance from '../../HOC/axios-orders';
 import Carousels from '../../Components/Carousels/Carousel';
 import ShowItem from '../../middleware/List';
@@ -10,7 +11,11 @@ import config from '../../config/config';
 
 class ShowPage extends Component {
 
+    constructor(props) {
+        super(props);
+        // this.handleOnClick = this.handleOnClick.bind(this);
 
+    }
 
     state = {
         testObj: {},
@@ -37,14 +42,14 @@ class ShowPage extends Component {
             })
             .catch(error => { this.setState({ error: true }) });
 
-        
+
 
         instance.get(`discover/tv?sort_by=popularity.desc&api_key=${config.apiKey}`)
             .then(res => {
                 const popTV = res.data.results;
                 this.setState({ popTV })
                 // console.log(popTV);
-                
+
             })
             .catch(error => { this.setState({ error: true }) });
 
@@ -52,6 +57,10 @@ class ShowPage extends Component {
     }
 
     render() {
+        
+        const {isMainPage} = this.props;
+        console.log(isMainPage);
+        
 
         const responsive = {
             desktop: {
@@ -75,6 +84,8 @@ class ShowPage extends Component {
         let movieShow = [...this.state.popMovies];
         // console.log(movieShow);
         let allPopMovies = Object.keys(movieShow).map(mvKey => {
+            // console.log(movieShow[mvKey]);
+
             return movieShow[mvKey];
         });
 
@@ -99,7 +110,6 @@ class ShowPage extends Component {
         // });
 
         const singleTvShow = ShowItem(allTvShows);
-
 
         return (
             <>
@@ -126,7 +136,7 @@ class ShowPage extends Component {
 
                         {singleMovie}
                     </Carousel>
-                    <br/>
+                    <br />
                     <h4>Popular series</h4>
                     <Carousel
                         swipeable={false}
@@ -149,10 +159,12 @@ class ShowPage extends Component {
                         {singleTvShow}
                     </Carousel>
                 </div>
-
             </>
 
         )
+
+
+
     }
 }
 

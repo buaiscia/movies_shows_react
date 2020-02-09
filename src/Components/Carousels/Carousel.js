@@ -5,8 +5,7 @@ class Carousel extends Component {
 
 
     state = { 
-        redirect: null,
-        isId: null
+        redirect: null
     };
 
     handleClick = () => {
@@ -26,14 +25,20 @@ class Carousel extends Component {
             let red = this.state.redirect;
             return <Redirect to={{
                 pathname : red,
-                state : { isId : props.id }}
+                state : { 
+                    id : props.id,
+                    title : props.title,
+                    description : props.description,
+                    popularity: props.popularity,
+                    vote: props.vote
+                 }}
             }  />
           }
 
         return (
             <>
                 <div>
-                    <p>{props.movieTitle}</p>
+                    <p>{props.title}</p>
                     <img src={props.poster}  />
                     <button onClick={this.handleClick}>Click</button>
                     <p>{props.id}</p>

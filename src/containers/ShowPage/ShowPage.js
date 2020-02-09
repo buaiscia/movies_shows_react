@@ -14,7 +14,8 @@ class ShowPage extends Component {
         testObj: {},
         popMovies: [],
         popTV: [],
-        pathImg: 'https://image.tmdb.org/t/p/w154',
+        family: [],
+        documentary: [],
         error: false
     }
 
@@ -46,11 +47,32 @@ class ShowPage extends Component {
             })
             .catch(error => { this.setState({ error: true }) });
 
+        instance.get(`discover/movie?with_genres=10751&api_key=${config.apiKey}`)
+
+            .then(res => {
+                const family = res.data.results;
+                this.setState({ family })
+                // console.log(popTV);
+
+            })
+            .catch(error => { this.setState({ error: true }) });
+
+        instance.get(`discover/movie?with_genres=99&api_key=${config.apiKey}`)
+
+            .then(res => {
+                const documentary = res.data.results;
+                this.setState({ documentary })
+                // console.log(popTV);
+
+            })
+            .catch(error => { this.setState({ error: true }) });
+
+
 
     }
 
     render() {
-        
+
 
         const responsive = {
             desktop: {
@@ -101,6 +123,36 @@ class ShowPage extends Component {
 
         const singleTvShow = ShowItem(allTvShows);
 
+        ///  GATHER LIST OF FAMILY MOVIES
+        let familyMovies = [...this.state.family];
+        let allFamilyMovies = Object.keys(familyMovies).map(mvKey => {
+            return familyMovies[mvKey];
+        });
+        // const singleTvShow = allTvShows.map((item, i) => {
+        //     let movieTitle = item["title"];
+        //     let moviePic = this.state.pathImg + item["poster_path"]
+        //     return <PopMovieCarousel key={i} movieTitle={movieTitle} poster={moviePic} />
+        // });
+
+        const singleFamilyMovie = ShowItem(allFamilyMovies);
+
+
+        ///  GATHER LIST OF DOCUMENTARY MOVIES
+        let docMovies = [...this.state.documentary];
+        let allDocMovies = Object.keys(docMovies).map(mvKey => {
+            return docMovies[mvKey];
+        });
+        // const singleTvShow = allTvShows.map((item, i) => {
+        //     let movieTitle = item["title"];
+        //     let moviePic = this.state.pathImg + item["poster_path"]
+        //     return <PopMovieCarousel key={i} movieTitle={movieTitle} poster={moviePic} />
+        // });
+
+        const singleDocMovie = ShowItem(allDocMovies);
+
+
+
+
         return (
             <>
                 <div>
@@ -147,6 +199,50 @@ class ShowPage extends Component {
                         itemClass="carousel-item-padding-40-px">
 
                         {singleTvShow}
+                    </Carousel>
+                    <br />
+                    <h4>Family movies</h4>
+                    <Carousel
+                        swipeable={false}
+                        draggable={false}
+                        showDots={true}
+                        responsive={responsive}
+                        ssr={true} // means to render carousel on server-side.
+                        infinite={true}
+                        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+                        // autoPlaySpeed={1000}
+                        keyBoardControl={true}
+                        // customTransition="all .5"
+                        // transitionDuration={500}
+                        containerClass="carousel-container"
+                        removeArrowOnDeviceType={["tablet", "mobile"]}
+                        deviceType={this.props.deviceType}
+                        dotListClass="custom-dot-list-style"
+                        itemClass="carousel-item-padding-40-px">
+
+                        {singleFamilyMovie}
+                    </Carousel>
+                    <br />
+                    <h4>Documentary movies</h4>
+                    <Carousel
+                        swipeable={false}
+                        draggable={false}
+                        showDots={true}
+                        responsive={responsive}
+                        ssr={true} // means to render carousel on server-side.
+                        infinite={true}
+                        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+                        // autoPlaySpeed={1000}
+                        keyBoardControl={true}
+                        // customTransition="all .5"
+                        // transitionDuration={500}
+                        containerClass="carousel-container"
+                        removeArrowOnDeviceType={["tablet", "mobile"]}
+                        deviceType={this.props.deviceType}
+                        dotListClass="custom-dot-list-style"
+                        itemClass="carousel-item-padding-40-px">
+
+                        {singleDocMovie}
                     </Carousel>
                 </div>
             </>

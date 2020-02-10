@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import Toolbar from '../../Components/Navigation/Toolbar/Toolbar';
 
 class Layout extends Component {
     render() {
         return (
             <div>
-                <h1>Layout</h1>
+                <Toolbar />
                 <main>
                     {this.props.children}
                 </main>

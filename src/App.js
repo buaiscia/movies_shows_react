@@ -22,7 +22,6 @@ class App extends Component {
     return (
       <>
         <Router>
-          <h1>Movie database app</h1>
           <Layout>
             {this.state.showMainPage && <ShowPage />}
 

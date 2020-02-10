@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import VideoPlayer from '../VideoPlayer/VideoPlayer';
 
 const Item = (props) => {
 
@@ -7,10 +8,7 @@ const Item = (props) => {
         props.hideMainPage()
     }
     hide();
-    }, []);
-    
-    console.log(props.location.state.allprops);
-    
+    }, []); 
     
     return (
         <>
@@ -20,7 +18,8 @@ const Item = (props) => {
             <h3>Data</h3>
             <p>{props.location.state.popularity}</p>
             <p>{props.location.state.vote}</p>
-            <p>pic</p>
+            <img src={props.location.state.poster} />
+            <VideoPlayer image={props.location.state.poster}/>
         </>
 
     )

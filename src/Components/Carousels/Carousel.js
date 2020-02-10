@@ -29,6 +29,7 @@ class Carousel extends Component {
                     id : props.id,
                     title : props.title,
                     description : props.description,
+                    poster: props.poster,
                     popularity: props.popularity,
                     vote: props.vote
                  }}

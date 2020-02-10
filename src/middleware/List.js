@@ -14,7 +14,7 @@ function showItem  (arr) {
         let description = item["overview"];
         let popularity = item["popularity"];
         let vote = item["vote_average"];
-        console.log(item);
+        // console.log(item);
         
         // console.log(moviePic);
         

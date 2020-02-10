@@ -40,7 +40,7 @@ class Carousel extends Component {
             <>
                 <div>
                     <p>{props.title}</p>
-                    <img src={props.poster}  />
+                    <img alt={`${props.title} poster`} src={props.poster}  />
                     <button onClick={this.handleClick}>Click</button>
                     <p>{props.id}</p>
                 </div>

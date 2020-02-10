@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import VideoPlayer from '../VideoPlayer/VideoPlayer';
 
 const Item = (props) => {
@@ -38,15 +38,20 @@ const Item = (props) => {
         player = (<VideoPlayer image={props.location.state.poster} />)
     }
 
+    let locState = props.location.state;
+
+
     return (
+
+
         <>
-            <h1>{props.location.state.title}</h1>
+            <h1>{locState.title}</h1>
             <h2>Description</h2>
-            <p>{props.location.state.description}</p>
+            <p>{locState.description}</p>
             <h3>Data</h3>
-            <p>{props.location.state.popularity}</p>
-            <p>{props.location.state.vote}</p>
-            <img src={props.location.state.poster} />
+            <p>{locState.popularity}</p>
+            <p>{locState.vote}</p>
+            <img alt={`${locState.title} poster`} src={locState.poster} />
             {!player ? <button onClick={showPlayer}>Click here to watch the trailer</button> : null}
 
             {player}

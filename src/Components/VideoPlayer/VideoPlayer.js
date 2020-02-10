@@ -11,7 +11,6 @@ class VideoPlayer extends Component {
         this.onError = this.onError.bind(this);
     }
 
-
     onErrorEvent(event) {
         // Extract the shaka.util.Error object from the event.
         this.onError(event.detail);
@@ -43,9 +42,10 @@ class VideoPlayer extends Component {
             .catch(this.onError);  // onError is executed if the asynchronous load fails.
 
         let screenPlayer = document.getElementById('screen-player');
-        if(screenPlayer.requestFullscreen) {
+        if (screenPlayer.requestFullscreen) {
             screenPlayer.requestFullscreen();
-        }  
+        }
+
     }
 
     render() {

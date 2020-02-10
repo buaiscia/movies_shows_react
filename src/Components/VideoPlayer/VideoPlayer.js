@@ -39,14 +39,20 @@ class VideoPlayer extends Component {
             // This runs if the asynchronous load is successful.
             console.log('The video has now been loaded!');
             return this;
-        }).catch(this.onError);  // onError is executed if the asynchronous load fails.
+        })
+            .catch(this.onError);  // onError is executed if the asynchronous load fails.
 
+        let screenPlayer = document.getElementById('screen-player');
+        if(screenPlayer.requestFullscreen) {
+            screenPlayer.requestFullscreen();
+        }  
     }
 
     render() {
 
         return (
             <video
+                id='screen-player'
                 width="640"
                 ref={this.videoComponent}
                 poster={this.props.image}

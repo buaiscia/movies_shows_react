@@ -1,12 +1,14 @@
 import React from 'react';
 import Logo from './Logo/Logo';
+import SearchBar from './SearchBar/SearchBar';
 
 const toolbar = () => (
 
 
     <header>
         <Logo />
-        <h5> toolbar header </h5>
+        <p> toolbar header </p>
+        <SearchBar />
     </header>
 
 )

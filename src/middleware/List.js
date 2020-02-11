@@ -9,12 +9,13 @@ function showItem  (arr) {
 
     return arr.map((item, i) => {
         let title = item["title"];
+        let name = item["name"]
         let poster = pathImg + item["poster_path"];
         let id = item["id"];
         let description = item["overview"];
         let popularity = item["popularity"];
         let vote = item["vote_average"];
-        // console.log(item);
+        console.log(item);
         
         // console.log(moviePic);
         
@@ -22,6 +23,7 @@ function showItem  (arr) {
             key={i} 
             id={id} 
             title={title} 
+            name={name}
             poster={poster} 
             description={description} 
             popularity={popularity}

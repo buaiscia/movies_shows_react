@@ -101,11 +101,7 @@ class ShowPage extends Component {
             return movieShow[mvKey];
         });
 
-        // const singleMovie = allMovies.map((item, i) => {
-        //     let movieTitle = item["title"];
-        //     let moviePic = this.state.pathImg + item["poster_path"]
-        //     return <Carousels key={i} movieTitle={movieTitle} poster={moviePic} />
-        // });
+        
 
         const singleMovie = ShowItem(allPopMovies);
 
@@ -115,12 +111,7 @@ class ShowPage extends Component {
         let allTvShows = Object.keys(tvShow).map(mvKey => {
             return tvShow[mvKey];
         });
-        // const singleTvShow = allTvShows.map((item, i) => {
-        //     let movieTitle = item["title"];
-        //     let moviePic = this.state.pathImg + item["poster_path"]
-        //     return <PopMovieCarousel key={i} movieTitle={movieTitle} poster={moviePic} />
-        // });
-
+       
         const singleTvShow = ShowItem(allTvShows);
 
         ///  GATHER LIST OF FAMILY MOVIES
@@ -128,12 +119,7 @@ class ShowPage extends Component {
         let allFamilyMovies = Object.keys(familyMovies).map(mvKey => {
             return familyMovies[mvKey];
         });
-        // const singleTvShow = allTvShows.map((item, i) => {
-        //     let movieTitle = item["title"];
-        //     let moviePic = this.state.pathImg + item["poster_path"]
-        //     return <PopMovieCarousel key={i} movieTitle={movieTitle} poster={moviePic} />
-        // });
-
+        
         const singleFamilyMovie = ShowItem(allFamilyMovies);
 
 
@@ -142,15 +128,9 @@ class ShowPage extends Component {
         let allDocMovies = Object.keys(docMovies).map(mvKey => {
             return docMovies[mvKey];
         });
-        // const singleTvShow = allTvShows.map((item, i) => {
-        //     let movieTitle = item["title"];
-        //     let moviePic = this.state.pathImg + item["poster_path"]
-        //     return <PopMovieCarousel key={i} movieTitle={movieTitle} poster={moviePic} />
-        // });
+        
 
         const singleDocMovie = ShowItem(allDocMovies);
-
-
 
 
         return (

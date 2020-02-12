@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import ErrorHandler from '../ErrorComp/ErrorComp';
 
 
 const ShowSearch = (props) => {
-    
 
-console.log(props);
+    const content = document.getElementById('showContent');
+    // console.log(props);
 
     // use useState to change showMainPage to falsae
 
@@ -39,15 +40,16 @@ console.log(props);
     // }, []);
 
     // console.log(locState);
-    
-    if(props.error) {
-        return (<ErrorHandler />)
+
+    if (props.error) {
+        searchRes = (<ErrorHandler />)
     }
 
-    return (
 
+
+    const searchRes = (
         <>
-            <h2>searching!</h2>
+            <h2>Search results: </h2>
 
             <Carousel
                 swipeable={false}
@@ -70,6 +72,13 @@ console.log(props);
                 {props.singleSearch}
             </Carousel>
         </>
+    )
+
+    return createPortal(
+
+         searchRes,  content
+
+
 
     )
 }

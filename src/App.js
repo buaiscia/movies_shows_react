@@ -4,6 +4,8 @@ import Item from './Components/Item/Item';
 import Layout from './HOC/Layout/Layout'
 import ShowPage from './containers/ShowPage/ShowPage';
 import Search from './Components/ShowSearch/ShowSearch';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import './App.css';
 
@@ -25,11 +27,11 @@ class App extends Component {
         <Router>
           <Layout isHidden={this.hideMainPage}>
             {this.state.showMainPage && <ShowPage />}
-
+            <div id="showContent"></div>
           </Layout>
           <Switch>
             <Route exact path="/movie" render={(props) => <Item hideMainPage={this.hideMainPage} {...props} />} />
-            {/* <Route exact path="/search" render={(props) => <Search hideMainPage={this.hideMainPage}  {...props}/>} /> */}
+            <Route exact path="/search" render={(props) => <Search hideMainPage={this.hideMainPage}  {...props} />} />
             <Route path="/" />
           </Switch>
         </Router>

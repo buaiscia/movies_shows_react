@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Form, FormControl, Button } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 
 import instance from '../../../../HOC/axios-orders';
@@ -13,20 +14,20 @@ class SearchBar extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { 
-            query: '', 
-            results: [], 
+        this.state = {
+            query: '',
+            results: [],
             redirect: false,
             error: false,
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         // this.handleClick = this.handleClick.bind(this);
-            
-            
+
+
     }
 
-    
+
 
     handleChange(event) {
         this.setState({ query: event.target.value })
@@ -36,40 +37,40 @@ class SearchBar extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        
+
         // console.log("query value: " + this.state.query);
         const queryValue = this.state.query;
-        this.setState({ redirect : true})
+        this.setState({ redirect: true })
         this.getData(queryValue);
         this.props.isHidden();
 
         // this.setState({ redirect: "/search" })
-        
+
     }
 
     getData(queryValue) {
-        
+
         instance.get(`search/multi?api_key=${config.apiKey}&query=${queryValue}`)
-        .then(res => {
-            // console.log(res.data.results);
-            
-            const searchedMovies = res.data.results;
-            // console.log(searchedMovies);
-            
-            let allSearched = Object.keys(searchedMovies).map(mvKey => {
-                return searchedMovies[mvKey];
-            });
-            // console.log(allSearched);
-            
-            const singleSearch = ShowItem(allSearched);
-            // console.log(singleSearch);
-            this.setState({ results : singleSearch })
-            
-            // console.log(this.state.results);
-            
-            // this.props.history.push("/search");
-        })
-        .catch(error => { this.setState({ error: true }) });
+            .then(res => {
+                // console.log(res.data.results);
+
+                const searchedMovies = res.data.results;
+                // console.log(searchedMovies);
+
+                let allSearched = Object.keys(searchedMovies).map(mvKey => {
+                    return searchedMovies[mvKey];
+                });
+                // console.log(allSearched);
+
+                const singleSearch = ShowItem(allSearched);
+                // console.log(singleSearch);
+                this.setState({ results: singleSearch })
+
+                // console.log(this.state.results);
+
+                // this.props.history.push("/search");
+            })
+            .catch(error => { this.setState({ error: true }) });
     }
 
     // handleClick = (event) => {
@@ -90,20 +91,20 @@ class SearchBar extends Component {
     //             instance.get(`search/multi?api_key=${config.apiKey}&query=${queryValue}`)
     //         .then(res => {
     //             console.log(res.data.results);
-                
+
     //             const searchedMovies = res.data.results;
     //             this.setState({ results : searchedMovies })
     //         })
     //         .catch(error => { this.setState({ error: true }) });
     //         }
-            
+
     //     // }
     // }
 
     render() {
 
         const redirect = this.state.redirect;
-        
+
         // let props = this.props;
 
         // let allResults = [...this.state.results];
@@ -112,60 +113,17 @@ class SearchBar extends Component {
         // });
 
 
-        
-
-        // const singleSearch = ShowItem(allSearched);
-        // console.log(allResults);
-        
-
-        if (redirect) {
-            // let red = this.state.redirect;
-            // this.hide;
-            // console.log(redirect);
-            
-            // window.history.pushState('/search', {
-            //     singleSearch : singleSearch
-            // });
-            const allResults = [...this.state.results]
-            // for(let i=0; i<allResults.l)
-            // console.log(allResults);
-            window.history.pushState({},"",'/search');
-
-            return (
-                
-                <ShowSearch singleSearch={allResults} error={this.state.error} />
-            )
-            // return (<Redirect to={{
-            //     pathname : redirect,
-            //     state : { 
-            //         // id : props.id,
-            //         // title : props.title,
-            //         // name: props.name,
-            //         // description : props.description,
-            //         // poster: props.poster,
-            //         // popularity: props.popularity,
-            //         // vote: props.vote,
-            //         singleSearch : allResults
-            //      }
-            //     }
-            // } />)
-        }
-        
-
-        
-
-        return (
-
+        const form = (
             <div>
-                <form onSubmit={this.handleSubmit} id='form'>
-                    <input type="text" placeholder="Search.." name="search" value={this.state.query} onChange={this.handleChange} />
-                    <button 
-                    // onClick={this.handleClick}
-                      type="submit">Submit</button>
+                <Form inline onSubmit={this.handleSubmit} id='form'>
+                    <FormControl className="mr-sm-2" type="text" placeholder="Search.." name="search" value={this.state.query} onChange={this.handleChange} />
+                    <Button variant="outline-success"
+                        // onClick={this.handleClick}
+                        type="submit">Submit</Button>
 
-                </form>
-                
-                
+                </Form>
+
+
                 {/* <ShowSearch singleSearch={singleSearch}/> */}
                 {/* <Carousel
                         swipeable={false}
@@ -189,6 +147,55 @@ class SearchBar extends Component {
                     </Carousel> */}
 
             </div>
+        )
+
+        // const singleSearch = ShowItem(allSearched);
+        // console.log(allResults);
+
+
+        if (redirect) {
+            // let red = this.state.redirect;
+            // this.hide;
+            // console.log(redirect);
+
+            // window.history.pushState('/search', {
+            //     singleSearch : singleSearch
+            // });
+            const allResults = [...this.state.results]
+            // for(let i=0; i<allResults.l)
+            // console.log(allResults);
+            window.history.pushState({}, "", '/search');
+
+            return (
+                <>
+                    {form}
+                    <ShowSearch singleSearch={allResults} error={this.state.error} />
+                </>
+
+            )
+            // return (<Redirect to={{
+            //     pathname : redirect,
+            //     state : { 
+            //         // id : props.id,
+            //         // title : props.title,
+            //         // name: props.name,
+            //         // description : props.description,
+            //         // poster: props.poster,
+            //         // popularity: props.popularity,
+            //         // vote: props.vote,
+            //         singleSearch : allResults
+            //      }
+            //     }
+            // } />)
+        }
+
+
+
+
+        return (
+            <>
+                {form}
+            </>
         )
     }
 

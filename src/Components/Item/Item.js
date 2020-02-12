@@ -45,7 +45,7 @@ const Item = (props) => {
 
 
         <>
-            <h1>{locState.title}</h1>
+            <h1>{locState.title || locState.name}</h1>
             <h2>Description</h2>
             <p>{locState.description}</p>
             <h3>Data</h3>

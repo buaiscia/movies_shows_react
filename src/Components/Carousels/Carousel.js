@@ -40,8 +40,8 @@ class Carousel extends Component {
         return (
             <>
                 <div>
-                    <p>{props.title ? props.title : props.name}</p>
-                    <img alt={`${props.title ? props.title : props.name} poster`} src={props.poster}  />
+                    <p>{props.title || props.name}</p>
+                    <img alt={`${props.title || props.name} poster`} src={props.poster}  />
                     <button onClick={this.handleClick}>Click</button>
                     <p>{props.id}</p>
                 </div>

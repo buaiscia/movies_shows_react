@@ -5,6 +5,8 @@ import 'react-multi-carousel/lib/styles.css';
 import instance from '../../HOC/axios-orders';
 import ShowItem from '../../middleware/List';
 
+import ErrorHandler from '../../Components/ErrorComp/ErrorComp';
+
 import config from '../../config/config';
 
 class ShowPage extends Component {
@@ -34,7 +36,7 @@ class ShowPage extends Component {
                 const popMovies = res.data.results;
                 this.setState({ popMovies })
             })
-            .catch(error => { this.setState({ error: true }) });
+            .catch(error => { this.setState({ error: true })});
 
 
 
@@ -45,7 +47,13 @@ class ShowPage extends Component {
                 // console.log(popTV);
 
             })
-            .catch(error => { this.setState({ error: true }) });
+            .catch(error => {
+                if (error.code === 'ECONNABORTED')
+                    return 'timeout';
+                else
+                    throw error;
+            });
+
 
         instance.get(`discover/movie?with_genres=10751&api_key=${config.apiKey}`)
 
@@ -55,7 +63,12 @@ class ShowPage extends Component {
                 // console.log(popTV);
 
             })
-            .catch(error => { this.setState({ error: true }) });
+            .catch(error => {
+                if (error.code === 'ECONNABORTED')
+                    return 'timeout';
+                else
+                    throw error;
+            });
 
         instance.get(`discover/movie?with_genres=99&api_key=${config.apiKey}`)
 
@@ -65,7 +78,12 @@ class ShowPage extends Component {
                 // console.log(popTV);
 
             })
-            .catch(error => { this.setState({ error: true }) });
+            .catch(error => {
+                if (error.code === 'ECONNABORTED')
+                    return 'timeout';
+                else
+                    throw error;
+            });
 
 
 
@@ -101,7 +119,7 @@ class ShowPage extends Component {
             return movieShow[mvKey];
         });
 
-        
+
 
         const singleMovie = ShowItem(allPopMovies);
 
@@ -111,7 +129,7 @@ class ShowPage extends Component {
         let allTvShows = Object.keys(tvShow).map(mvKey => {
             return tvShow[mvKey];
         });
-       
+
         const singleTvShow = ShowItem(allTvShows);
 
         ///  GATHER LIST OF FAMILY MOVIES
@@ -119,7 +137,7 @@ class ShowPage extends Component {
         let allFamilyMovies = Object.keys(familyMovies).map(mvKey => {
             return familyMovies[mvKey];
         });
-        
+
         const singleFamilyMovie = ShowItem(allFamilyMovies);
 
 
@@ -128,16 +146,22 @@ class ShowPage extends Component {
         let allDocMovies = Object.keys(docMovies).map(mvKey => {
             return docMovies[mvKey];
         });
-        
+
 
         const singleDocMovie = ShowItem(allDocMovies);
 
+        // const errorHandler = (<ErrorHandler />)
+
+        // if(this.state.error) {
+        //     return <ErrorHandler />
+        // }
 
         return (
             <>
                 <div>
                     <h3>Main show page</h3>
                     <h4>Popular movies</h4>
+                    {this.state.error ? <ErrorHandler /> :
                     <Carousel
                         swipeable={false}
                         draggable={false}
@@ -157,9 +181,10 @@ class ShowPage extends Component {
                         itemClass="carousel-item-padding-40-px">
 
                         {singleMovie}
-                    </Carousel>
+                    </Carousel> }
                     <br />
                     <h4>Popular series</h4>
+                    {this.state.error ? <ErrorHandler /> :
                     <Carousel
                         swipeable={false}
                         draggable={false}
@@ -179,9 +204,10 @@ class ShowPage extends Component {
                         itemClass="carousel-item-padding-40-px">
 
                         {singleTvShow}
-                    </Carousel>
+                    </Carousel> }
                     <br />
                     <h4>Family movies</h4>
+                    {this.state.error ? <ErrorHandler /> :
                     <Carousel
                         swipeable={false}
                         draggable={false}
@@ -201,9 +227,10 @@ class ShowPage extends Component {
                         itemClass="carousel-item-padding-40-px">
 
                         {singleFamilyMovie}
-                    </Carousel>
+                    </Carousel> }
                     <br />
                     <h4>Documentary movies</h4>
+                    {this.state.error ? <ErrorHandler /> :
                     <Carousel
                         swipeable={false}
                         draggable={false}
@@ -223,7 +250,7 @@ class ShowPage extends Component {
                         itemClass="carousel-item-padding-40-px">
 
                         {singleDocMovie}
-                    </Carousel>
+                    </Carousel>}
                 </div>
             </>
 

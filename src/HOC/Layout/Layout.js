@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import Toolbar from '../../Components/Navigation/Toolbar/Toolbar';
 
-class Layout extends Component {
-    render() {
+const Layout = (props) => {    
         return (
             <div>
-                <Toolbar />
+                <Toolbar isHidden={props.isHidden} />
                 <main>
-                    {this.props.children}
+                    {props.children}
                 </main>
             </div>
 
         )
-    }
+    
 }
 
 export default Layout;

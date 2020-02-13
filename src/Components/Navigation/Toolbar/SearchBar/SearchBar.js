@@ -19,15 +19,14 @@ class SearchBar extends Component {
             results: [],
             redirect: false,
             error: false,
+            showSearch: this.props.isSearch
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         
-        console.log(props);
         
 
         // this.handleClick = this.handleClick.bind(this);
-
 
     }
 
@@ -41,13 +40,18 @@ class SearchBar extends Component {
     }
 
     handleSubmit(event) {
+        
+        
         event.preventDefault();
+        this.props.showSearchPage();
+
         // console.log("query value: " + this.state.query);
         const queryValue = this.state.query;
         this.setState({ redirect: true })
 
         this.getData(queryValue);
         this.props.isHidden();
+        
 
         // this.setState({ redirect: "/search" })
 
@@ -107,6 +111,8 @@ class SearchBar extends Component {
     // }
 
     render() {
+        console.log(this.state.showSearch);
+
 
         const redirect = this.state.redirect;
 
@@ -122,7 +128,8 @@ class SearchBar extends Component {
             <div>
                 <Form inline onSubmit={this.handleSubmit} id='form'>
                     <FormControl className="mr-sm-2" type="text" placeholder="Search.." name="search" value={this.state.query} onChange={this.handleChange} />
-                    <Button onClick={this.props.showSearchPage} variant="outline-success"
+                    <Button 
+                        variant="outline-success"
                         // onClick={this.handleClick}
                         type="submit">Submit</Button>
 
@@ -175,7 +182,7 @@ class SearchBar extends Component {
                 <>
                     {form}
 
-                    {this.props.isSearch ? <ShowSearch singleSearch={allResults} error={this.state.error} isSearch={this.props.isSearch}  /> : null }
+                    {this.props.isSearch ? <ShowSearch singleSearch={allResults} error={this.state.error} hideSearchPage={this.props.hideSearchPage} isSearch={this.props.isSearch}  /> : null }
                     
                 </>
 

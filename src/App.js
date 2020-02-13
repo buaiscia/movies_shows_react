@@ -39,7 +39,7 @@ class App extends Component {
       <>
         <Router>
           <Layout isHidden={this.hideMainPage} hideSearchPage={this.hideSearchPage} isSearch={this.state.showSearchPage} showSearchPage={this.showSearchPageFunc}>
-            {this.state.showMainPage && <ShowPage />}
+            {this.state.showMainPage && <ShowPage isHidden={this.hideMainPage}  />}
             <div id="showContent"></div>
           </Layout>
           <Switch>

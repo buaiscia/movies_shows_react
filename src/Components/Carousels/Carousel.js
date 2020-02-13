@@ -10,7 +10,8 @@ class Carousel extends Component {
     };
 
     handleClick = () => {
-        this.setState({ redirect: '/movie'}, () => {
+        
+         this.setState({ redirect: '/movie'}, () => {
             if(this.props.onClick) {
                 this.props.onClick(this.state);
             }
@@ -20,6 +21,7 @@ class Carousel extends Component {
 
     render() {
         let props = this.props;
+        // console.log(props);
         
         
         if (this.state.redirect) {
@@ -33,7 +35,7 @@ class Carousel extends Component {
                     description : props.description,
                     poster: props.poster,
                     popularity: props.popularity,
-                    vote: props.vote
+                    vote: props.vote,
                  }}
             }  />
           }

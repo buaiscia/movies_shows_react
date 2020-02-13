@@ -68,7 +68,7 @@ const ShowSearch = (props) => {
                 deviceType={props.deviceType}
                 dotListClass="custom-dot-list-style"
                 itemClass="carousel-item-padding-40-px">
-
+                
                 {props.singleSearch}
             </Carousel>
         </>

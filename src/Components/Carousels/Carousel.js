@@ -5,7 +5,8 @@ class Carousel extends Component {
 
 
     state = { 
-        redirect: null
+        redirect: null,
+        
     };
 
     handleClick = () => {

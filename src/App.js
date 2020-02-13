@@ -13,24 +13,37 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { showMainPage: true }
+    this.state = { showMainPage: true, showSearchPage: true }
   }
 
   hideMainPage = () => {
-    this.setState({ showMainPage: false })
+    this.setState({ showMainPage: false  })
   }
+
+  hideSearchPage = () => {
+    if(this.state.showSearchPage) {
+      this.setState({showSearchPage: false })
+    }
+
+  }
+
+  showSearchPageFunc  = () => {
+     this.setState({showSearchPage: true })
+    }
+
+  
 
   render() {
 
     return (
       <>
         <Router>
-          <Layout isHidden={this.hideMainPage}>
+          <Layout isHidden={this.hideMainPage} hideSearchPage={this.hideSearchPage} isSearch={this.state.showSearchPage} showSearchPage={this.showSearchPageFunc}>
             {this.state.showMainPage && <ShowPage />}
             <div id="showContent"></div>
           </Layout>
           <Switch>
-            <Route exact path="/movie" render={(props) => <Item hideMainPage={this.hideMainPage} {...props} />} />
+            <Route exact path="/movie" render={(props) => <Item hideMainPage={this.hideMainPage} hideSearchPage={this.hideSearchPage} showSearchPage={this.showSearchPageFunc} {...props} />} />
             <Route exact path="/search" render={(props) => <Search hideMainPage={this.hideMainPage}  {...props} />} />
             <Route path="/" />
           </Switch>

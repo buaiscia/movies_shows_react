@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import VideoPlayer from '../VideoPlayer/VideoPlayer';
+import { Carousel } from 'react-bootstrap';
 
 const Item = (props) => {
 
+    props.hideSearchPage();
     let player = null;
     const [isPlayer, setIsPlayer] = useState(false);
 
@@ -16,7 +18,12 @@ const Item = (props) => {
 
     useEffect(() => {
         function hide() {
-            props.hideMainPage()
+            // if(window.location.pathname === '/movie') {
+                props.hideMainPage()
+                props.hideSearchPage()
+                props.showSearchPage()
+            
+            
         }
         hide();
 

@@ -22,25 +22,30 @@ class SearchBar extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        
+        console.log(props);
+        
+
         // this.handleClick = this.handleClick.bind(this);
 
 
     }
 
-
+    
 
     handleChange(event) {
         this.setState({ query: event.target.value })
         // console.log(this.state.query);
+
         event.preventDefault();
     }
 
     handleSubmit(event) {
         event.preventDefault();
-
         // console.log("query value: " + this.state.query);
         const queryValue = this.state.query;
         this.setState({ redirect: true })
+
         this.getData(queryValue);
         this.props.isHidden();
 
@@ -117,7 +122,7 @@ class SearchBar extends Component {
             <div>
                 <Form inline onSubmit={this.handleSubmit} id='form'>
                     <FormControl className="mr-sm-2" type="text" placeholder="Search.." name="search" value={this.state.query} onChange={this.handleChange} />
-                    <Button variant="outline-success"
+                    <Button onClick={this.props.showSearchPage} variant="outline-success"
                         // onClick={this.handleClick}
                         type="submit">Submit</Button>
 
@@ -169,7 +174,9 @@ class SearchBar extends Component {
             return (
                 <>
                     {form}
-                    <ShowSearch singleSearch={allResults} error={this.state.error} />
+
+                    {this.props.isSearch ? <ShowSearch singleSearch={allResults} error={this.state.error} isSearch={this.props.isSearch}  /> : null }
+                    
                 </>
 
             )

@@ -3,7 +3,7 @@ import navLogo from '../../../../assets/images/tmdb.svg';
 
 const logo = () => (
     
-    <div >
+    <div>
         <img style={{maxWidth : "80px", }} alt="The movie db logo" src={navLogo} />
     </div >
 

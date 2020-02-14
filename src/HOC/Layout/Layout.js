@@ -4,7 +4,11 @@ import Toolbar from '../../Components/Navigation/Toolbar/Toolbar';
 const Layout = (props) => {    
         return (
             <div>
-                <Toolbar isHidden={props.isHidden} hideSearchPage={props.hideSearchPage} isSearch={props.isSearch} showSearchPage={props.showSearchPage}/>
+                <Toolbar 
+                    isHidden={props.isHidden} 
+                    hideSearchPage={props.hideSearchPage} 
+                    isSearch={props.isSearch} 
+                    showSearchPage={props.showSearchPage}/>
                 <main>
                     {props.children}
                 </main>

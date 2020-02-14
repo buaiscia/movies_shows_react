@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Item from './Components/Item/Item';
 import Layout from './HOC/Layout/Layout'
 import ShowPage from './containers/ShowPage/ShowPage';
-import Search from './Components/ShowSearch/ShowSearch';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -44,7 +43,6 @@ class App extends Component {
           </Layout>
           <Switch>
             <Route exact path="/movie" render={(props) => <Item hideMainPage={this.hideMainPage} hideSearchPage={this.hideSearchPage} showSearchPage={this.showSearchPageFunc} {...props} />} />
-            <Route exact path="/search" render={(props) => <Search hideMainPage={this.hideMainPage}  {...props} />} />
             <Route path="/" />
           </Switch>
         </Router>

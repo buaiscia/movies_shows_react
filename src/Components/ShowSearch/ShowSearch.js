@@ -29,23 +29,7 @@ const ShowSearch = (props) => {
             slidesToSlide: 1, // optional, default to 1.
         },
     };
-
-    // let locState = props.location.state;
-
-    // useEffect(() => {
-    //     function hide() {
-    //         props.hideMainPage()
-    //     }
-    //     hide();
-    // }, []);
-
-    // console.log(locState);
-
-    // if (props.error) {
-    //     searchRes = (<ErrorHandler />)
-    // }
-
-    
+   
 
     const searchRes = (
         <>
@@ -77,8 +61,6 @@ const ShowSearch = (props) => {
     return createPortal(
 
          searchRes,  content
-
-
 
     )
 }

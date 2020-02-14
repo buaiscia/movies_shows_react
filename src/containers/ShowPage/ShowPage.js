@@ -9,11 +9,13 @@ import ErrorHandler from '../../Components/ErrorComp/ErrorComp';
 
 import config from '../../config/config';
 
+import classes from './ShowPage.module.css';
+
+
 class ShowPage extends Component {
 
 
     state = {
-        testObj: {},
         popMovies: [],
         popTV: [],
         family: [],
@@ -22,37 +24,20 @@ class ShowPage extends Component {
     }
 
     componentDidMount() {
-        // instance.get(`movie/550?api_key=${config.apiKey}`)
-        //     .then(res => {
-        //         const testObj = res.data;
-        //         this.setState({ testObj });
-        // console.log(testObj.id + testObj.title);
-        // console.log(this.state.pathImg+testObj.poster_path);
-        // })
-        // .catch(error => { this.setState({ error: true }) })
 
         instance.get(`discover/movie?sort_by=popularity.desc&api_key=${config.apiKey}`)
             .then(res => {
                 const popMovies = res.data.results;
                 this.setState({ popMovies })
             })
-            .catch(error => { this.setState({ error: true })});
-
-
+            .catch(error => { this.setState({ error: true }) });
 
         instance.get(`discover/tv?sort_by=popularity.desc&api_key=${config.apiKey}`)
             .then(res => {
                 const popTV = res.data.results;
                 this.setState({ popTV })
-                // console.log(popTV);
-
             })
-            .catch(error => {
-                if (error.code === 'ECONNABORTED')
-                    return 'timeout';
-                else
-                    throw error;
-            });
+            .catch(error => { this.setState({ error: true }) });
 
 
         instance.get(`discover/movie?with_genres=10751&api_key=${config.apiKey}`)
@@ -60,31 +45,16 @@ class ShowPage extends Component {
             .then(res => {
                 const family = res.data.results;
                 this.setState({ family })
-                // console.log(popTV);
-
             })
-            .catch(error => {
-                if (error.code === 'ECONNABORTED')
-                    return 'timeout';
-                else
-                    throw error;
-            });
+            .catch(error => { this.setState({ error: true }) });
 
         instance.get(`discover/movie?with_genres=99&api_key=${config.apiKey}`)
 
             .then(res => {
                 const documentary = res.data.results;
                 this.setState({ documentary })
-                // console.log(popTV);
-
             })
-            .catch(error => {
-                if (error.code === 'ECONNABORTED')
-                    return 'timeout';
-                else
-                    throw error;
-            });
-
+            .catch(error => { this.setState({ error: true }) });
 
 
     }
@@ -112,15 +82,9 @@ class ShowPage extends Component {
 
         ///  GATHER LIST OF MOVIES
         let movieShow = [...this.state.popMovies];
-        // console.log(movieShow);
         let allPopMovies = Object.keys(movieShow).map(mvKey => {
-            // console.log(movieShow[mvKey]);
-
             return movieShow[mvKey];
         });
-
-
-
         const singleMovie = ShowItem(allPopMovies);
 
 
@@ -150,107 +114,111 @@ class ShowPage extends Component {
 
         const singleDocMovie = ShowItem(allDocMovies);
 
-        // const errorHandler = (<ErrorHandler />)
+        const errorHandler = (<ErrorHandler />)
 
-        // if(this.state.error) {
-        //     return <ErrorHandler />
-        // }
+        if (this.state.error) {
+            return (
+                <>
+                    <ErrorHandler />
+                </>
+            )
+        }
 
         return (
             <>
-                <div>
+                <div className={classes.mainShowPage}>
                     <h3>Main show page</h3>
                     <h4>Popular movies</h4>
                     {this.state.error ? <ErrorHandler /> :
-                    <Carousel
-                        swipeable={false}
-                        draggable={false}
-                        showDots={true}
-                        responsive={responsive}
-                        ssr={true} // means to render carousel on server-side.
-                        infinite={true}
-                        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-                        // autoPlaySpeed={1000}
-                        keyBoardControl={true}
-                        // customTransition="all .5"
-                        // transitionDuration={500}
-                        containerClass="carousel-container"
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
-                        deviceType={this.props.deviceType}
-                        dotListClass="custom-dot-list-style"
-                        itemClass="carousel-item-padding-40-px">
+                        <Carousel
+                            swipeable={false}
+                            draggable={false}
+                            showDots={true}
+                            responsive={responsive}
+                            ssr={true} // means to render carousel on server-side.
+                            infinite={true}
+                            // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+                            // autoPlaySpeed={1000}
+                            keyBoardControl={true}
+                            // customTransition="all .5"
+                            // transitionDuration={500}
+                            containerClass="carousel-container"
+                            removeArrowOnDeviceType={["tablet", "mobile"]}
+                            deviceType={this.props.deviceType}
+                            dotListClass="custom-dot-list-style"
+                            itemClass="carousel-item-padding-40-px">
 
-                        {singleMovie}
-                    </Carousel> }
+                            {singleMovie}
+                        </Carousel>}
                     <br />
                     <h4>Popular series</h4>
                     {this.state.error ? <ErrorHandler /> :
-                    <Carousel
-                        swipeable={false}
-                        draggable={false}
-                        showDots={true}
-                        responsive={responsive}
-                        ssr={true} // means to render carousel on server-side.
-                        infinite={true}
-                        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-                        // autoPlaySpeed={1000}
-                        keyBoardControl={true}
-                        // customTransition="all .5"
-                        // transitionDuration={500}
-                        containerClass="carousel-container"
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
-                        deviceType={this.props.deviceType}
-                        dotListClass="custom-dot-list-style"
-                        itemClass="carousel-item-padding-40-px">
+                        <Carousel
+                            swipeable={false}
+                            draggable={false}
+                            showDots={true}
+                            responsive={responsive}
+                            ssr={true} // means to render carousel on server-side.
+                            infinite={true}
+                            // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+                            // autoPlaySpeed={1000}
+                            keyBoardControl={true}
+                            // customTransition="all .5"
+                            // transitionDuration={500}
+                            containerClass="carousel-container"
+                            removeArrowOnDeviceType={["tablet", "mobile"]}
+                            deviceType={this.props.deviceType}
+                            dotListClass="custom-dot-list-style"
+                            itemClass="carousel-item-padding-40-px">
 
-                        {singleTvShow}
-                    </Carousel> }
+                            {singleTvShow}
+                        </Carousel>}
                     <br />
                     <h4>Family movies</h4>
                     {this.state.error ? <ErrorHandler /> :
-                    <Carousel
-                        swipeable={false}
-                        draggable={false}
-                        showDots={true}
-                        responsive={responsive}
-                        ssr={true} // means to render carousel on server-side.
-                        infinite={true}
-                        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-                        // autoPlaySpeed={1000}
-                        keyBoardControl={true}
-                        // customTransition="all .5"
-                        // transitionDuration={500}
-                        containerClass="carousel-container"
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
-                        deviceType={this.props.deviceType}
-                        dotListClass="custom-dot-list-style"
-                        itemClass="carousel-item-padding-40-px">
+                        <Carousel
+                            swipeable={false}
+                            draggable={false}
+                            showDots={true}
+                            responsive={responsive}
+                            ssr={true} // means to render carousel on server-side.
+                            infinite={true}
+                            // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+                            // autoPlaySpeed={1000}
+                            keyBoardControl={true}
+                            // customTransition="all .5"
+                            // transitionDuration={500}
+                            containerClass="carousel-container"
+                            removeArrowOnDeviceType={["tablet", "mobile"]}
+                            deviceType={this.props.deviceType}
+                            dotListClass="custom-dot-list-style"
+                            itemClass="carousel-item-padding-40-px">
 
-                        {singleFamilyMovie}
-                    </Carousel> }
+                            {singleFamilyMovie}
+                        </Carousel>}
                     <br />
                     <h4>Documentary movies</h4>
                     {this.state.error ? <ErrorHandler /> :
-                    <Carousel
-                        swipeable={false}
-                        draggable={false}
-                        showDots={true}
-                        responsive={responsive}
-                        ssr={true} // means to render carousel on server-side.
-                        infinite={true}
-                        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-                        // autoPlaySpeed={1000}
-                        keyBoardControl={true}
-                        // customTransition="all .5"
-                        // transitionDuration={500}
-                        containerClass="carousel-container"
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
-                        deviceType={this.props.deviceType}
-                        dotListClass="custom-dot-list-style"
-                        itemClass="carousel-item-padding-40-px">
+                        <Carousel
+                            swipeable={false}
+                            draggable={false}
+                            showDots={true}
+                            responsive={responsive}
+                            ssr={true} // means to render carousel on server-side.
+                            infinite={true}
+                            // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+                            // autoPlaySpeed={1000}
+                            keyBoardControl={true}
+                            // customTransition="all .5"
+                            // transitionDuration={500}
+                            containerClass="carousel-container"
+                            removeArrowOnDeviceType={["tablet", "mobile"]}
+                            deviceType={this.props.deviceType}
+                            dotListClass="custom-dot-list-style"
+                            itemClass="carousel-item-padding-40-px">
 
-                        {singleDocMovie}
-                    </Carousel>}
+                            {singleDocMovie}
+                        </Carousel>}
                 </div>
             </>
 

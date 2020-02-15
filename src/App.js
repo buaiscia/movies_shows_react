@@ -6,6 +6,7 @@ import ShowPage from './containers/ShowPage/ShowPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+
 import './App.css';
 
 class App extends Component {
@@ -16,34 +17,45 @@ class App extends Component {
   }
 
   hideMainPage = () => {
-    this.setState({ showMainPage: false  })
+    this.setState({ showMainPage: false })
   }
 
   hideSearchPage = () => {
-    if(this.state.showSearchPage) {
-      this.setState({showSearchPage: false })
+    if (this.state.showSearchPage) {
+      this.setState({ showSearchPage: false })
     }
 
   }
 
-  showSearchPageFunc  = () => {
-     this.setState({showSearchPage: true })
-    }
+  showSearchPageFunc = () => {
+    this.setState({ showSearchPage: true })
+  }
 
-  
+
 
   render() {
 
     return (
       <>
         <Router>
-          <Layout isHidden={this.hideMainPage} hideSearchPage={this.hideSearchPage} isSearch={this.state.showSearchPage} showSearchPage={this.showSearchPageFunc}>
-            {this.state.showMainPage && <ShowPage isHidden={this.hideMainPage}  />}
+          <Layout
+            isHidden={this.hideMainPage}
+            hideSearchPage={this.hideSearchPage}
+            isSearch={this.state.showSearchPage}
+            showSearchPage={this.showSearchPageFunc}>
+
+            {this.state.showMainPage && <ShowPage />}
+
             <div id="showContent"></div>
+
           </Layout>
           <Switch>
-            <Route exact path="/movie" render={(props) => <Item hideMainPage={this.hideMainPage} hideSearchPage={this.hideSearchPage} showSearchPage={this.showSearchPageFunc} {...props} />} />
-            <Route path="/" />
+            <Route exact path="/" />
+            <Route exact path="/movie" render={(props) =>
+              <Item hideMainPage={this.hideMainPage}
+                hideSearchPage={this.hideSearchPage}
+                {...props} />} />
+
           </Switch>
         </Router>
       </>

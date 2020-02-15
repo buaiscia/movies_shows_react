@@ -5,7 +5,7 @@ import 'react-multi-carousel/lib/styles.css';
 import instance from '../../HOC/axios-orders';
 import ShowItem from '../../middleware/List';
 
-import ErrorHandler from '../../Components/ErrorComp/ErrorComp';
+import ErrorHandler from '../../Components/ErrorHandler/ErrorHandler';
 
 import config from '../../config/config';
 
@@ -114,7 +114,6 @@ class ShowPage extends Component {
 
         const singleDocMovie = ShowItem(allDocMovies);
 
-        const errorHandler = (<ErrorHandler />)
 
         if (this.state.error) {
             return (

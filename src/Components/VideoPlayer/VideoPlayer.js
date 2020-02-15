@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import shaka from 'shaka-player';
+import videoToPlay from '../../assets/video/playlist.m3u8'
 
 class VideoPlayer extends Component {
     constructor(props) {
@@ -23,11 +24,13 @@ class VideoPlayer extends Component {
 
     componentDidMount() {
 
-        var manifestUri = 'https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd';
+        var manifestUri = videoToPlay;
 
         const video = this.videoComponent.current;
 
         var player = new shaka.Player(video);
+        player.configure('manifest.defaultPresentationDelay', 0);
+
 
         // Listen for error events.
         player.addEventListener('error', this.onErrorEvent);

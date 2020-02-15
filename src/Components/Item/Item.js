@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import VideoPlayer from '../VideoPlayer/VideoPlayer';
-import { Carousel } from 'react-bootstrap';
 
 const Item = (props) => {
 
-    
+
     let player = null;
     const [isPlayer, setIsPlayer] = useState(false);
 
@@ -34,6 +33,7 @@ const Item = (props) => {
         
     }, []);
 
+    console.log(props);
     
 
     const showPlayer = (e) => {

@@ -3,6 +3,8 @@ import { Navbar, Nav } from 'react-bootstrap';
 
 import SearchBar from './SearchBar/SearchBar';
 
+import classes from './Toolbar.module.css'
+
 import navLogo from '../../../assets/images/tmdb.svg'
 
 const toolbar = (props) => {
@@ -10,7 +12,7 @@ const toolbar = (props) => {
     return (
         <header>
             
-            <Navbar bg="light" expand="lg">
+            <Navbar className={classes.MainToolbar} expand="lg">
                 <Navbar.Brand href="#home"> <img style={{width : "80px", }} alt="The movie db logo" src={navLogo} /> </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

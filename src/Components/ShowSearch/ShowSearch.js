@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import ErrorHandler from '../ErrorComp/ErrorComp';
+import ErrorHandler from '../ErrorHandler/ErrorHandler';
 
 
 const ShowSearch = (props) => {

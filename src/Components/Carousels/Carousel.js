@@ -26,7 +26,7 @@ class Carousel extends Component {
         
         if (this.state.redirect) {
             let red = this.state.redirect;
-            return <Redirect to={{
+            return <Redirect push to={{
                 pathname : red,
                 state : { 
                     id : props.id,

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+
 import { Form, FormControl, Button } from 'react-bootstrap';
-import { Redirect } from "react-router-dom";
+import ErrorHandler from '../../../ErrorHandler/ErrorHandler';
 
 import instance from '../../../../HOC/axios-orders';
 import config from '../../../../config/config';
 import ShowItem from '../../../../middleware/List';
-// import Carousel from 'react-multi-carousel';
-// import 'react-multi-carousel/lib/styles.css';
+
 import ShowSearch from '../../../ShowSearch/ShowSearch';
+
 
 
 class SearchBar extends Component {
@@ -23,10 +24,7 @@ class SearchBar extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        
-        
 
-        // this.handleClick = this.handleClick.bind(this);
 
     }
 
@@ -45,7 +43,6 @@ class SearchBar extends Component {
         event.preventDefault();
         this.props.showSearchPage();
 
-        // console.log("query value: " + this.state.query);
         const queryValue = this.state.query;
         this.setState({ redirect: true })
 
@@ -53,7 +50,6 @@ class SearchBar extends Component {
         this.props.isHidden();
         
 
-        // this.setState({ redirect: "/search" })
 
     }
 
@@ -61,54 +57,20 @@ class SearchBar extends Component {
 
         instance.get(`search/multi?api_key=${config.apiKey}&query=${queryValue}`)
             .then(res => {
-                // console.log(res.data.results);
 
                 const searchedMovies = res.data.results;
-                // console.log(searchedMovies);
 
                 let allSearched = Object.keys(searchedMovies).map(mvKey => {
                     return searchedMovies[mvKey];
                 });
-                // console.log(allSearched);
 
                 const singleSearch = ShowItem(allSearched);
-                // console.log(singleSearch);
                 this.setState({ results: singleSearch })
 
-                // console.log(this.state.results);
 
-                // this.props.history.push("/search");
             })
             .catch(error => { this.setState({ error: true }) });
     }
-
-    // handleClick = (event) => {
-    //     this.setState({ redirect: '/search'}, 
-    //     () => {
-    //         if(this.props.onClick) {
-    //             this.props.onClick(this.state);
-    //         }
-    //     }
-    // )
-    //     event.preventDefault();
-    // }
-
-    // componentDidMount() {
-    //     // getData = (queryValue) => { 
-    //         let queryValue = this.state.query;
-    //         let getData = (queryValue) => {
-    //             instance.get(`search/multi?api_key=${config.apiKey}&query=${queryValue}`)
-    //         .then(res => {
-    //             console.log(res.data.results);
-
-    //             const searchedMovies = res.data.results;
-    //             this.setState({ results : searchedMovies })
-    //         })
-    //         .catch(error => { this.setState({ error: true }) });
-    //         }
-
-    //     // }
-    // }
 
     render() {
         console.log(this.state.showSearch);
@@ -116,12 +78,6 @@ class SearchBar extends Component {
 
         const redirect = this.state.redirect;
 
-        // let props = this.props;
-
-        // let allResults = [...this.state.results];
-        // let allSearched = Object.keys(allResults).map(mvKey => {
-        //     return allResults[mvKey];
-        // });
 
 
         const form = (
@@ -135,47 +91,22 @@ class SearchBar extends Component {
 
                 </Form>
 
-
-                {/* <ShowSearch singleSearch={singleSearch}/> */}
-                {/* <Carousel
-                        swipeable={false}
-                        draggable={false}
-                        showDots={true}
-                        responsive={responsive}
-                        ssr={true} // means to render carousel on server-side.
-                        infinite={true}
-                        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-                        // autoPlaySpeed={1000}
-                        keyBoardControl={true}
-                        // customTransition="all .5"
-                        // transitionDuration={500}
-                        containerClass="carousel-container"
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
-                        deviceType={this.props.deviceType}
-                        dotListClass="custom-dot-list-style"
-                        itemClass="carousel-item-padding-40-px">
-
-                        {singleSearch}
-                    </Carousel> */}
-
             </div>
         )
 
-        // const singleSearch = ShowItem(allSearched);
-        // console.log(allResults);
 
+        if (this.state.error) {
+            return (
+                <>
+                    <ErrorHandler />
+                </>
+            )
+        }
 
         if (redirect) {
-            // let red = this.state.redirect;
-            // this.hide;
-            // console.log(redirect);
-
-            // window.history.pushState('/search', {
-            //     singleSearch : singleSearch
-            // });
+ 
             const allResults = [...this.state.results]
-            // for(let i=0; i<allResults.l)
-            // console.log(allResults);
+
             window.history.pushState({}, "", '/search');
 
             return (
@@ -187,24 +118,8 @@ class SearchBar extends Component {
                 </>
 
             )
-            // return (<Redirect to={{
-            //     pathname : redirect,
-            //     state : { 
-            //         // id : props.id,
-            //         // title : props.title,
-            //         // name: props.name,
-            //         // description : props.description,
-            //         // poster: props.poster,
-            //         // popularity: props.popularity,
-            //         // vote: props.vote,
-            //         singleSearch : allResults
-            //      }
-            //     }
-            // } />)
+           
         }
-
-
-
 
         return (
             <>

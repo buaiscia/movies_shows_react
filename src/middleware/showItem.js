@@ -2,12 +2,13 @@ import React from 'react';
 
 import Carousels from '../Components/Carousels/Carousel';
 
-function showItem  (arr) {
+function showItem  (showArray) {
     
     
-    const pathImg = 'https://image.tmdb.org/t/p/w154';
+    const pathImg = 'https://image.tmdb.org/t/p/w185'; //get default starting path for images for carousel
 
-    return arr.map((item, i) => {
+    // parse the array and  pass each item to a variable
+    return showArray.map((item, i) => {
         let title = item["title"];
         let name = item["name"]
         let poster = pathImg + item["poster_path"];
@@ -15,10 +16,8 @@ function showItem  (arr) {
         let description = item["overview"];
         let popularity = item["popularity"];
         let vote = item["vote_average"];
-        // console.log(item);
-        
-        // console.log(moviePic);
-        
+
+        // callback to return the Component  with props as the parsed array items
         return <Carousels 
             key={i} 
             id={id} 

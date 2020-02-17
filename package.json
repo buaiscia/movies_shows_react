@@ -8,12 +8,15 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "http-proxy-middleware": "^0.20.0",
     "react": "^16.12.0",
+    "react-app-polyfill": "^1.0.6",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
     "react-multi-carousel": "^2.5.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.1",
+    "react-test-renderer": "^16.12.0",
     "shaka-player": "^2.5.9"
   },
   "scripts": {
@@ -34,7 +37,9 @@
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      "last 1 ie version"
     ]
-  }
+  },
+  "proxy": "https://bitdash-a.akamaihd.net"
 }

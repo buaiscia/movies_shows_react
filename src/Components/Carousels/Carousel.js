@@ -1,52 +1,56 @@
 import React, { Component } from 'react';
 import { Redirect } from "react-router-dom";
 
+import classes from './Carousel.module.css';
+
 class Carousel extends Component {
 
 
-    state = { 
-        redirect: null,
-        
+    state = {
+        redirect: null, //define the redirect state to check when to do it
     };
 
     handleClick = () => {
-        
-         this.setState({ redirect: '/movie'}, () => {
-            if(this.props.onClick) {
+        // onclick image change redirect state 
+        this.setState({ redirect: '/show' }, () => {
+            if (this.props.onClick) {
                 this.props.onClick(this.state);
             }
         })
     }
-    
+
 
     render() {
         let props = this.props;
-        // console.log(props);
-        
-        
+
+        // check if redirecting
         if (this.state.redirect) {
             let red = this.state.redirect;
             return <Redirect push to={{
-                pathname : red,
-                state : { 
-                    id : props.id,
-                    title : props.title,
+                pathname: red, // passing Redirect pathname
+                state: {       // passing different props to be used in Item component
+                    id: props.id,
+                    title: props.title,
                     name: props.name,
-                    description : props.description,
+                    description: props.description,
                     poster: props.poster,
                     popularity: props.popularity,
                     vote: props.vote,
-                 }}
-            }  />
-          }
+                }
+            }
+            } />
+        }
 
         return (
             <>
                 <div>
-                    <p>{props.title || props.name}</p>
-                    <img alt={`${props.title || props.name} poster`} src={props.poster}  />
-                    <button onClick={this.handleClick}>Click</button>
-                    <p>{props.id}</p>
+                    
+                    <img
+                        className={classes.image}
+                        onClick={this.handleClick}
+                        alt={`${props.title || props.name} poster`}
+                        src={props.poster} />
+                    <p className={classes.title}>{props.title || props.name}</p>
                 </div>
             </>
         )

@@ -1,16 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { createPortal } from 'react-dom'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import ErrorHandler from '../ErrorHandler/ErrorHandler';
-
+import classes from './ShowSearch.module.css'
 
 const ShowSearch = (props) => {
 
-    const content = document.getElementById('showContent');
-    // console.log(props);
-
-    // use useState to change showMainPage to falsae
+    const content = document.getElementById('showContent'); //take the element id where to pass the component
 
     const responsive = {
         desktop: {
@@ -29,38 +25,43 @@ const ShowSearch = (props) => {
             slidesToSlide: 1, // optional, default to 1.
         },
     };
-   
+
 
     const searchRes = (
         <>
-            <h2>Search results: </h2>
+            <div className={classes.mainSearchPage}>
+                <h2>Search results: </h2>
+                {/* Pass the result element into the carousel */}
+                <Carousel
+                    className={classes.carouselStyle}
+                    swipeable={true}
+                    draggable={false}
+                    showDots={false}
+                    responsive={responsive}
+                    ssr={false} // means to render carousel on server-side.
+                    infinite={true}
+                    // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+                    // autoPlaySpeed={1000}
+                    keyBoardControl={true}
+                    // customTransition="all .5"
+                    // transitionDuration={500}
+                    containerClass="carousel-container"
+                    removeArrowOnDeviceType={["tablet", "mobile"]}
+                    deviceType={props.deviceType}
+                    dotListClass="custom-dot-list-style"
+                    itemClass="carousel-item-padding-40-px"
+                >
+                    {props.singleSearch}
+                </Carousel>
+            </div>
 
-            <Carousel
-                swipeable={false}
-                draggable={false}
-                showDots={true}
-                responsive={responsive}
-                ssr={true} // means to render carousel on server-side.
-                infinite={true}
-                // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-                // autoPlaySpeed={1000}
-                keyBoardControl={true}
-                // customTransition="all .5"
-                // transitionDuration={500}
-                containerClass="carousel-container"
-                removeArrowOnDeviceType={["tablet", "mobile"]}
-                deviceType={props.deviceType}
-                dotListClass="custom-dot-list-style"
-                itemClass="carousel-item-padding-40-px"
-                hideSearchPage={props.hideSearchPage}>
-                {props.singleSearch}
-            </Carousel>
         </>
     )
 
+    // through createPortal pass the component (searchRes) to the id (content)
     return createPortal(
 
-         searchRes,  content
+        searchRes, content
 
     )
 }

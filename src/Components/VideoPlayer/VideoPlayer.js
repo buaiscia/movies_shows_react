@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import shaka from 'shaka-player';
-import videoToPlay from '../../assets/video/playlist.m3u8'
 
 class VideoPlayer extends Component {
     constructor(props) {
@@ -10,6 +9,8 @@ class VideoPlayer extends Component {
         this.onErrorEvent = this.onErrorEvent.bind(this);
 
         this.onError = this.onError.bind(this);
+
+        
     }
 
     onErrorEvent(event) {
@@ -23,8 +24,9 @@ class VideoPlayer extends Component {
     }
 
     componentDidMount() {
-
-        var manifestUri = videoToPlay;
+        
+        // URI called only as pathname, root took as proxy
+        var manifestUri = `/content/sintel/hls/playlist.m3u8`;
 
         const video = this.videoComponent.current;
 
@@ -44,6 +46,7 @@ class VideoPlayer extends Component {
         })
             .catch(this.onError);  // onError is executed if the asynchronous load fails.
 
+        // automatically go to full screen
         let screenPlayer = document.getElementById('screen-player');
         if (screenPlayer.requestFullscreen) {
             screenPlayer.requestFullscreen();
@@ -60,6 +63,7 @@ class VideoPlayer extends Component {
                 ref={this.videoComponent}
                 poster={this.props.image}
                 controls
+                autoPlay
             />
         );
     }

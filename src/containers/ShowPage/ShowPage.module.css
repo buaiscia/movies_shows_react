@@ -1,3 +1,15 @@
 .mainShowPage {
     text-align: center;
 }
+
+.carouselStyle {
+    margin: 2% 0;
+}
+
+@media all and (max-width:30em){
+    .carouselStyle {
+        padding-top: 4%;
+    }
+        
+        
+    }

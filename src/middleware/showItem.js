@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Carousels from '../Components/Carousels/Carousel';
+import Carousels from '../Components/Carousel/Carousel';
 
 function showItem  (showArray) {
     

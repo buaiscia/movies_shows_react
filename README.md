@@ -96,10 +96,8 @@ As per notes below, the visualization of the HSL stream is possible only on IE/E
 
 - The main bug is about playing HLS stream in Shaka player in autoplay. As far as I found in the documentation, Firefox and Chrome have some flaws in decoding this kind of stream, while it's possible to stream it in Android and Internet Explorer/Edge. 
 
-It works on Internet Explorer and Edge (apart from the auto full screen which is not supported on Edge), but on IE it can be loaded only in build/production mode (and not development for incompatibily with some of JS ES6, even with added polyfills).
+- HLS stream works on Internet Explorer and Edge (apart from the auto full screen which is not supported on Edge), but on IE the whole application can be loaded only in build/production mode (and not development for incompatibily with some of JS ES6, even with added polyfills).
 
 - There is one error in console which depends on some image path on TMDB which doesn't exist.
 
 - There is one warning about useEffect, which was possible to forcibly ignore, but I decided to keep it as would be good practice to solve it in another way.
-
-- I used axios instead of fetch() as the latter is supported only from Chrome v42.

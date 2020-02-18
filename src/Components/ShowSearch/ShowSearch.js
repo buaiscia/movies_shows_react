@@ -57,12 +57,12 @@ const ShowSearch = (props) => {
 
         </>
     )
-
+    return searchRes;
     // through createPortal pass the component (searchRes) to the id (content)
-    return createPortal(
+    // return createPortal(
 
-        searchRes, content
+    //     searchRes, content
 
-    )
+    // )
 }
 export default ShowSearch;

@@ -5,6 +5,7 @@ import Layout from './HOC/Layout/Layout'
 import ShowPage from './containers/ShowPage/ShowPage';
 import ShowSearch from './Components/ShowSearch/ShowSearch'
 import ErrorHandler from './Components/ErrorHandler/ErrorHandler'
+import Search from './Components/Search/Search';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -49,20 +50,16 @@ class App extends Component {
             showSearchPage={this.showSearchPageFunc}>
 
             {/* Show component showpage only when state true */}
-            {this.state.showMainPage && <ShowPage />}
-
-            {/* Div where Search component will be directed through the createPortal React API */}
-            <div id="showContent"></div>
 
           </Layout>
           <Switch>
-            <Route exact path="/" />
+            <Route exact path="/" component={ShowPage} />
             {/* Routing to pass functions and props to the Item component (where it will be rendered the single show) */}
             <Route exact path="/show" render={(props) =>
               <Item hideMainPage={this.hideMainPage}
                 hideSearchPage={this.hideSearchPage}
                 {...props} />} />
-            <Route exact path="/search" component={ShowSearch} />
+            <Route exact path="/search" component={Search} />
             {/* Error message when different route */}
             <Route component={ErrorHandler} />
           </Switch>

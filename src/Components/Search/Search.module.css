@@ -3,3 +3,11 @@
     align-items: center;
     width: 50%;
 }
+
+@media all and (max-width:600px) {
+    .form {
+        width: 70%;
+
+    }
+}
+

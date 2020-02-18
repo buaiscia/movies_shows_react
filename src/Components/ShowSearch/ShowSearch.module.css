@@ -5,3 +5,16 @@
 .carouselStyle {
     margin: 2% 0;
 }
+
+
+@media all and (max-width:600px) {
+    .mainSearchPage {
+        padding-top: 10%;
+    }
+
+    .mainSearchPage h2 {
+        font-weight: bold;
+        padding-bottom: 5%;
+    }
+}
+

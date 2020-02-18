@@ -1,12 +1,9 @@
 import React from 'react';
-import { createPortal } from 'react-dom'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import classes from './ShowSearch.module.css'
 
 const ShowSearch = (props) => {
-
-    const content = document.getElementById('showContent'); //take the element id where to pass the component
 
     const responsive = {
         desktop: {
@@ -58,11 +55,6 @@ const ShowSearch = (props) => {
         </>
     )
     return searchRes;
-    // through createPortal pass the component (searchRes) to the id (content)
-    // return createPortal(
 
-    //     searchRes, content
-
-    // )
 }
 export default ShowSearch;

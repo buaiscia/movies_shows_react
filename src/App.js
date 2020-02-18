@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Item from './Components/Item/Item';
 import Layout from './HOC/Layout/Layout'
 import ShowPage from './containers/ShowPage/ShowPage';
-import ShowSearch from './Components/ShowSearch/ShowSearch'
 import ErrorHandler from './Components/ErrorHandler/ErrorHandler'
 import Search from './Components/Search/Search';
 import 'bootstrap/dist/css/bootstrap.min.css';

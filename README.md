@@ -16,7 +16,12 @@ Run it
 
 ```npm start```
 
-As per notes below, the visualization of the HSL stream is possible only on Edge.
+As per notes below, the visualization of the HSL stream is possible only on IE/Edge.
+
+#### Or for Production mode
+
+```npm run-script build```
+```serve -s build```
 
 ## Structure
 
@@ -90,7 +95,8 @@ As per notes below, the visualization of the HSL stream is possible only on Edge
 - I've added two small unit tests: one on the Carousel component and one on the ShowPage component (basic).
 
 - The main bug is about playing HLS stream in Shaka player in autoplay. As far as I found in the documentation, Firefox and Chrome have some flaws in decoding this kind of stream, while it's possible to stream it in Android and Internet Explorer/Edge. 
-While unfortunately I didn't manage, even adding polyfills, to make it work on IE,  On Edge it works but fullscreen is only manual. 
+
+It works on Internet Explorer and Edge (apart from the auto full screen which is not supported on Edge), but on IE it can be loaded only in build/production mode (and not development for incompatibily with some of JS ES6, even with added polyfills).
 
 - There is one error in console which depends on some image path on TMDB which doesn't exist.
 

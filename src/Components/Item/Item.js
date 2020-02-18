@@ -56,7 +56,7 @@ const Item = (props) => {
             {/* pass all props from the Carousel component */}
             <div className={classes.mainDiv}>
                 <div className={classes.col1}>
-                    <h1 style={{paddingBottom: "10%"}}>{locState.title || locState.name}</h1>
+                    <h1>{locState.title || locState.name}</h1>
                     <h3>Description</h3>
                     <p>{locState.description}</p>
                     <hr/>

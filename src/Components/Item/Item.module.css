@@ -17,6 +17,14 @@
     width: 130%
 }
 
+.col1 h3 {
+    padding: 2% 0;
+}
+
+.col1 h1 {
+    padding:  0 0 10% 0;
+}
+
 
 .buttonShow {
     display:inline-block;
@@ -86,4 +94,9 @@ p {
     text-align: justify;
     
 }
+
+.col1 h1 {
+    padding:  10% 0;
+}
+
 }

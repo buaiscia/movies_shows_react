@@ -8,6 +8,8 @@
     text-align: center;
 }
 
+/* responsive */
+
 @media all and (max-width:600px) {
     .title {
         font-size: 1.6rem;

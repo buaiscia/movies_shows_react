@@ -7,6 +7,8 @@
     margin: 2% 0;
 }
 
+/* responsive */
+
 @media all and (max-width:600px){
     .carouselStyle {
         padding-top: 4%;

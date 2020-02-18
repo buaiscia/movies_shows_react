@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Item from './Components/Item/Item';
 import Layout from './HOC/Layout/Layout'
 import ShowPage from './containers/ShowPage/ShowPage';
-import ErrorHandler from './Components/ErrorHandler/ErrorHandler'
+import NotFound from './Components/NotFound/NotFound';
 import Search from './Components/Search/Search';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -60,7 +60,7 @@ class App extends Component {
                 {...props} />} />
             <Route exact path="/search" component={Search} />
             {/* Error message when different route */}
-            <Route component={ErrorHandler} />
+            <Route component={NotFound} />
           </Switch>
         </Router>
       </>

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Item from './Components/Item/Item';
-import Layout from './HOC/Layout/Layout'
-import ShowPage from './containers/ShowPage/ShowPage';
-import NotFound from './Components/NotFound/NotFound';
+import Layout from './Components/Layout/Layout'
+import ShowPage from './Components/ShowPage/ShowPage';
 import Search from './Components/Search/Search';
+import NotFound from './Components/NotFound/NotFound';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -59,7 +60,7 @@ class App extends Component {
                 hideSearchPage={this.hideSearchPage}
                 {...props} />} />
             <Route exact path="/search" component={Search} />
-            {/* Error message when different route */}
+            {/* Error message when 404 route */}
             <Route component={NotFound} />
           </Switch>
         </Router>

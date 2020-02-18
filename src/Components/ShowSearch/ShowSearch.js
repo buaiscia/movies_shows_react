@@ -37,11 +37,7 @@ const ShowSearch = (props) => {
                     responsive={responsive}
                     ssr={false} // means to render carousel on server-side.
                     infinite={true}
-                    // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-                    // autoPlaySpeed={1000}
                     keyBoardControl={true}
-                    // customTransition="all .5"
-                    // transitionDuration={500}
                     containerClass="carousel-container"
                     removeArrowOnDeviceType={["tablet", "mobile"]}
                     deviceType={props.deviceType}

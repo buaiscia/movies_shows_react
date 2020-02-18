@@ -5,7 +5,6 @@ import classes from './Carousel.module.css';
 
 class Carousel extends Component {
 
-
     state = {
         redirect: null, //define the redirect state to check when to do it
     };
@@ -26,7 +25,7 @@ class Carousel extends Component {
         // check if redirecting
         if (this.state.redirect) {
             let red = this.state.redirect;
-            return <Redirect push to={{
+            return <Redirect push to={{ //Connect to Route /show displaying Item component
                 pathname: red, // passing Redirect pathname
                 state: {       // passing different props to be used in Item component
                     id: props.id,
@@ -44,12 +43,11 @@ class Carousel extends Component {
         return (
             <>
                 <div>
-                    
                     <img
                         className={classes.image}
                         onClick={this.handleClick} // call handleClick function
                         alt={`${props.title || props.name} poster`}
-                        src={props.poster} />  
+                        src={props.poster} />
                     <p className={classes.title}>{props.title || props.name}</p>
                 </div>
             </>

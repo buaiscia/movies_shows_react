@@ -4,6 +4,8 @@
     float: left;
 }
 
+/* creates columns */
+
 .col1 {
     width: 50%;
     float:left;
@@ -48,9 +50,9 @@
     text-shadow: 0 0 2em rgba(255,255,255,1);
     color:rgb(21, 19, 179);
     background-color:rgb(203, 217, 255);
-
-    /* border-color:#FFFFFF; */
 }
+
+/* responsive */
 
 @media all and (max-width:30em){
     buttonShow{
@@ -72,31 +74,31 @@
     .mainDiv {
     float: none;
     padding: 0 5%;
-}
-
-.col1 {
-    width: 100%;
-
-    float:none;
-}
-.col2 {
-    float:none;
-    text-align: center;
-    padding: 5% 0;
-}
-
-.col2 img {
-    border-radius: 5%;
-    width: 70%
-}
-
-p {
-    text-align: justify;
+    }
+        
+    .col1 {
+        width: 100%;
     
-}
-
-.col1 h1 {
-    padding:  10% 0;
-}
+        float:none;
+    }
+    .col2 {
+        float:none;
+        text-align: center;
+        padding: 5% 0;
+    }
+    
+    .col2 img {
+        border-radius: 5%;
+        width: 70%
+    }
+    
+    p {
+        text-align: justify;
+        
+    }
+    
+    .col1 h1 {
+        padding:  10% 0;
+    }
 
 }

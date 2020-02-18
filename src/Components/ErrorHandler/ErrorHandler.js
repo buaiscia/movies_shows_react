@@ -5,7 +5,7 @@ const ErrorHandler = () => {
 
     return (
         <div className="error" >
-            <h2>I'm sorry, at this moment I can't connect</h2>
+            <h5>I'm sorry, at this moment I can't connect</h5>
 
         </div>
     )

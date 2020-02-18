@@ -78,7 +78,7 @@ class SearchBar extends Component {
                         placeholder="Search..." 
                         name="search" 
                         value={this.state.query} 
-                        onChange={this.handleChange} />
+                        onChange={this.handleChange} /> 
                     <Button
                         variant="outline-success"
                         type="submit">Submit

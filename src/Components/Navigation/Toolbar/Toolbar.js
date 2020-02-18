@@ -4,7 +4,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import classes from './Toolbar.module.css'
 import navLogo from '../../../assets/images/tmdb.svg'
 
-const toolbar = () => {
+const Toolbar = () => {
 
     return (
         <header>
@@ -32,4 +32,4 @@ const toolbar = () => {
 }
 
 
-export default toolbar;
+export default Toolbar;

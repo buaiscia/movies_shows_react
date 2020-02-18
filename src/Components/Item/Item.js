@@ -33,8 +33,6 @@ const Item = (props) => {
 
     }, []);
 
-    // console.log(props);
-
 
     const showPlayer = (e) => {
         e.preventDefault();
@@ -46,7 +44,7 @@ const Item = (props) => {
         player = (<VideoPlayer image={props.location.state.poster} />)
     }
 
-    let locState = props.location.state;
+    let locState = props.location.state; // get props from Carousel component
 
 
     return (
@@ -59,9 +57,9 @@ const Item = (props) => {
                     <h1>{locState.title || locState.name}</h1>
                     <h3>Description</h3>
                     <p>{locState.description}</p>
-                    <hr/>
+                    <hr />
                     <p>Popularity: {locState.popularity}</p>
-                    <p style={{paddingBottom: "5%"}}>Vote: {locState.vote}</p>
+                    <p style={{ paddingBottom: "5%" }}>Vote: {locState.vote}</p>
                     {/* show the button if the player is unactive */}
                     {!player ? <button className={classes.buttonShow} onClick={showPlayer}>Watch the trailer</button> : null}
                     <br />
@@ -69,10 +67,6 @@ const Item = (props) => {
                     {player}
                 </div>
                 <div className={classes.col2}><img alt={`${locState.title} poster`} src={locState.poster} /></div>
-
-            </div>
-            <div>
-
 
             </div>
         </>

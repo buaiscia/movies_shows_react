@@ -7,6 +7,7 @@ import showItem from '../../middleware/showItem';   //import a function to parse
 
 import Spinner from '../Spinner/Spinner'
 import ErrorHandler from '../../Components/ErrorHandler/ErrorHandler'; // Comp. to appear in case of errors in fetching data
+import withErrorHandler from '../../HOC/withErrorHandler/withErrorHandler';
 
 import config from '../../config/config'; //Import the config file where the API_KEY is present
 
@@ -229,4 +230,4 @@ class ShowPage extends Component {
     }
 }
 
-export default ShowPage;
+export default withErrorHandler(ShowPage, instance);

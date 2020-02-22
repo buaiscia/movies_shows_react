@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, FormControl, Button } from 'react-bootstrap'; // import the model for the Form element
 import ShowSearch from '../ShowSearch/ShowSearch';
 import ErrorHandler from '../ErrorHandler/ErrorHandler'; // Comp. to appear in case of errors in fetching data
+import withErrorHandler from '../../HOC/withErrorHandler/withErrorHandler';
 import Spinner from '../Spinner/Spinner';
 
 import instance from '../../HOC/axios-orders';  //Import a fixed instance of Axios 
@@ -131,4 +132,4 @@ class SearchBar extends Component {
 
 
 
-export default SearchBar;
+export default withErrorHandler(SearchBar, instance);

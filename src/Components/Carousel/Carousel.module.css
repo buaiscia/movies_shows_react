@@ -3,6 +3,10 @@
     border-radius: 5%;
 }
 
+.click {
+    cursor: pointer;
+}
+
 .title {
     padding-top: 2%;
     text-align: center;

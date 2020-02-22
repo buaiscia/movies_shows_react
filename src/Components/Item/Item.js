@@ -32,12 +32,12 @@ const Item = (props) => {
         document.addEventListener('MSFullscreenChange', escFunction);
 
         return () => {
-                document.removeEventListener('fullscreenchange', escFunction);
-                document.removeEventListener('webkitfullscreenchange', escFunction);
-                document.removeEventListener('mozfullscreenchange', escFunction);
-                document.removeEventListener('MSFullscreenChange', escFunction);
-            
-            }
+            document.removeEventListener('fullscreenchange', escFunction);
+            document.removeEventListener('webkitfullscreenchange', escFunction);
+            document.removeEventListener('mozfullscreenchange', escFunction);
+            document.removeEventListener('MSFullscreenChange', escFunction);
+
+        }
     }, []);
 
 
@@ -73,7 +73,12 @@ const Item = (props) => {
                     {/* show the player component */}
                     {player}
                 </div>
-                <div className={classes.col2}><img alt={`${locState.title} poster`} src={locState.poster} /></div>
+                <div className={classes.col2}>
+                    {locState.poster ?
+                        <img alt={`${locState.title} poster`} src={locState.poster} />
+                        : `Poster not available`
+                    }
+                </div>
 
             </div>
         </>

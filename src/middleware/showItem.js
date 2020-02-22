@@ -9,9 +9,15 @@ function showItem  (showArray) {
 
     // parse the array and  pass each item to a variable
     return showArray.map((item) => {
+        
+        let poster = item["poster_path"] ? pathImg + item["poster_path"] : null;
         let title = item["title"];
-        let name = item["name"]
-        let poster = pathImg + item["poster_path"];
+        let name = item["name"];
+        // if(item["poster_path"] === 'undefined') {
+        //     poster = null;
+        // } else {
+        //     poster = pathImg + item["poster_path"];
+        // }
         let id = item["id"];
         let description = item["overview"];
         let popularity = item["popularity"];

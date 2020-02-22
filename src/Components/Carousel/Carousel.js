@@ -42,12 +42,17 @@ class Carousel extends Component {
 
         return (
             <>
-                <div>
-                    <img
-                        className={classes.image}
-                        onClick={this.handleClick} // call handleClick function
-                        alt={`${props.title || props.name} poster`}
-                        src={props.poster} />
+                <div className={classes.click} onClick={this.handleClick}>
+                    {props.poster ?
+                        <img
+                            className={classes.image}
+                            alt={`${props.title || props.name} poster`}
+                            src={props.poster} />
+                            : 
+                            (<div>
+                                <p>Poster not available</p>
+                            </div>)
+                }
                     <p className={classes.title}>{props.title || props.name}</p>
                 </div>
             </>

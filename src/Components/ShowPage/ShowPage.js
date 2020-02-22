@@ -35,14 +35,13 @@ class ShowPage extends Component {
             .then(res => {
                 const popMovies = res.data.results;             //save the results in new object
                 popMovies ? this.setState({ popMovies }) : this.setState({ error: true })
-                // pass the results into the state
             })
             .catch(error => { this.setState({ error: true }) });
 
         instance.get(`discover/tv?sort_by=popularity.desc&api_key=${config.apiKey}`)
             .then(res => {
                 const popTV = res.data.results;
-                this.setState({ popTV })
+                popTV ? this.setState({ popTV }) : this.setState({ error: true })
             })
             .catch(error => { this.setState({ error: true }) });
 
@@ -51,7 +50,7 @@ class ShowPage extends Component {
 
             .then(res => {
                 const family = res.data.results;
-                this.setState({ family })
+                family ? this.setState({ family }) : this.setState({ error: true })
             })
             .catch(error => { this.setState({ error: true }) });
 
@@ -59,7 +58,8 @@ class ShowPage extends Component {
 
             .then(res => {
                 const documentary = res.data.results;
-                this.setState({ documentary })
+                documentary ? this.setState({ documentary }) : this.setState({ error: true })
+
             })
             .catch(error => { this.setState({ error: true }) });
 
@@ -71,6 +71,10 @@ class ShowPage extends Component {
 
 
         const responsive = {
+            superLargeDesktop: {
+                breakpoint: { max: 4000, min: 3000 },
+                items: 5,
+              },
             desktop: {
                 breakpoint: { max: 3000, min: 1024 },
                 items: 3,
@@ -212,7 +216,6 @@ class ShowPage extends Component {
             show = <Spinner />
         }
 
-        console.log(this.state.popMovies);
 
 
         return (

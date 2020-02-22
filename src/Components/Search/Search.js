@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, FormControl, Button } from 'react-bootstrap'; // import the model for the Form element
 import ShowSearch from '../ShowSearch/ShowSearch';
 import ErrorHandler from '../ErrorHandler/ErrorHandler'; // Comp. to appear in case of errors in fetching data
+import Spinner from '../Spinner/Spinner';
 
 import instance from '../../HOC/axios-orders';  //Import a fixed instance of Axios 
 import config from '../../config/config';         //Import the config file where the API_KEY is present
@@ -19,7 +20,8 @@ class SearchBar extends Component {
             query: '',  // Axios query to TMDB API
             results: [],    // Array of all results fetched by Axios on TMDB
             searched: false, //Check if results of the search and render Carousel with shows
-            error: false
+            error: false,
+            loading: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,6 +38,8 @@ class SearchBar extends Component {
 
         // ON SUBMIT
         event.preventDefault();
+
+        this.setState({ loading: true})
 
         const queryValue = this.state.query;
 
@@ -57,8 +61,7 @@ class SearchBar extends Component {
                 });
 
                 const singleSearch = showItem(allSearched);     // call the function showItem with the object. showItem will get every key pair value and pass it as prop, and return the Carousel component as Symbol
-                this.setState({ results: singleSearch })        // pass the results into the state
-
+                singleSearch ? this.setState({ results: singleSearch }) : this.setState({ error: true })
 
             })
             .catch(error => { this.setState({ error: true }) });
@@ -88,30 +91,27 @@ class SearchBar extends Component {
 
             </div>
         )
-
-        //error handling during the data fecth to TMDB
-        if (this.state.error) {
-            return (
-                <>
-                    <ErrorHandler />
-                </>
-            )
-        }
-
+        
+        
         if (searched) {
 
             const allResults = [...this.state.results]
 
-            // window.history.pushState({}, "", '/search');
+            let shownSearch = this.state.error ? <ErrorHandler /> : <Spinner />
+
+            if(allResults.length > 0) {
+                shownSearch = (
+                    <ShowSearch
+                        singleSearch={allResults}
+                    />
+                )
+            }
 
             return (
                 <>
                     {form}
                     {/* Pass results to the ShowSearch component if state of isSearch true */}
-                    <ShowSearch
-                        singleSearch={allResults}
-                        error={this.state.error}
-                    />
+                    {shownSearch}
 
                 </>
 

@@ -8,7 +8,7 @@ function showItem  (showArray) {
     const pathImg = 'https://image.tmdb.org/t/p/w185'; //get default starting path for images for carousel
 
     // parse the array and  pass each item to a variable
-    return showArray.map((item, i) => {
+    return showArray.map((item) => {
         let title = item["title"];
         let name = item["name"]
         let poster = pathImg + item["poster_path"];
@@ -19,7 +19,7 @@ function showItem  (showArray) {
 
         // callback to return the Component  with props as the parsed array items
         return <Carousels 
-            key={i} 
+            key={id} 
             id={id} 
             title={title} 
             name={name}

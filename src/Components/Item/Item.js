@@ -31,6 +31,13 @@ const Item = (props) => {
         document.addEventListener('mozfullscreenchange', escFunction);
         document.addEventListener('MSFullscreenChange', escFunction);
 
+        return () => {
+                document.removeEventListener('fullscreenchange', escFunction);
+                document.removeEventListener('webkitfullscreenchange', escFunction);
+                document.removeEventListener('mozfullscreenchange', escFunction);
+                document.removeEventListener('MSFullscreenChange', escFunction);
+            
+            }
     }, []);
 
 

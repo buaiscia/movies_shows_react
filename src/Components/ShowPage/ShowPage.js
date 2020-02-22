@@ -5,6 +5,7 @@ import 'react-multi-carousel/lib/styles.css';
 import instance from '../../HOC/axios-orders'; //Import a fixed instance of Axios 
 import showItem from '../../middleware/showItem';   //import a function to parse the show object and return its properties
 
+import Spinner from '../Spinner/Spinner'
 import ErrorHandler from '../../Components/ErrorHandler/ErrorHandler'; // Comp. to appear in case of errors in fetching data
 
 import config from '../../config/config'; //Import the config file where the API_KEY is present
@@ -21,9 +22,11 @@ class ShowPage extends Component {
         popTV: [], //array for storing all results from the popular tv shows
         family: [], //array for storing all results from the movies in the family category
         documentary: [], //array for storing all results from the movies in the documentary category
-        error: false  //managing errors in fetching data
+        error: false,  //managing errors in fetching data
+        loading: true
     }
 
+    
     componentDidMount() {
 
         // ALL FUNCTIONS FOR FETCHING DATA FROM TMDB AND STORING IN ITS STATES/ARRAYS
@@ -31,7 +34,8 @@ class ShowPage extends Component {
         instance.get(`discover/movie?sort_by=popularity.desc&api_key=${config.apiKey}`)   //use Axios instance and make a GET req to TMDB API
             .then(res => {
                 const popMovies = res.data.results;             //save the results in new object
-                this.setState({ popMovies })                    // pass the results into the state
+                popMovies ? this.setState({ popMovies }) : this.setState({ error: true })
+                // pass the results into the state
             })
             .catch(error => { this.setState({ error: true }) });
 
@@ -59,6 +63,7 @@ class ShowPage extends Component {
             })
             .catch(error => { this.setState({ error: true }) });
 
+        this.setState({ loading: false })
 
     }
 
@@ -116,90 +121,104 @@ class ShowPage extends Component {
 
         const singleDocMovie = showItem(allDocMovies);
 
-        return (
-            <>
+        let show = this.state.error ? <ErrorHandler /> : <Spinner />
+
+
+
+        if (this.state.popMovies.length > 0) {
+            show = (
+
                 <div className={classes.mainShowPage}>
                     <h2>Popular movies</h2>
                     {/* Show carousel if error false, otherwise Error component */}
-                    {this.state.error ? <ErrorHandler /> :
-                        <Carousel
-                            className={classes.carouselStyle}
-                            swipeable={true}
-                            draggable={false}
-                            showDots={false}
-                            responsive={responsive}
-                            ssr={false} // means to render carousel on server-side.
-                            infinite={true}
-                            keyBoardControl={true}
-                            containerClass="carousel-container"
-                            removeArrowOnDeviceType={["tablet", "mobile"]}
-                            deviceType={this.props.deviceType}
-                            dotListClass="custom-dot-list-style"
-                            itemClass="carousel-item-padding-40-px">
-                            {singleMovie}
-                        </Carousel>}
+                    <Carousel
+                        className={classes.carouselStyle}
+                        swipeable={true}
+                        draggable={false}
+                        showDots={false}
+                        responsive={responsive}
+                        ssr={false} // means to render carousel on server-side.
+                        infinite={true}
+                        keyBoardControl={true}
+                        containerClass="carousel-container"
+                        removeArrowOnDeviceType={["tablet", "mobile"]}
+                        deviceType={this.props.deviceType}
+                        dotListClass="custom-dot-list-style"
+                        itemClass="carousel-item-padding-40-px">
+                        {singleMovie}
+                    </Carousel>
                     <br />
                     <h2>Popular series</h2>
-                    {this.state.error ? <ErrorHandler /> :
-                        <Carousel
-                            className={classes.carouselStyle}
-                            swipeable={true}
-                            draggable={false}
-                            showDots={false}
-                            responsive={responsive}
-                            ssr={false} // means to render carousel on server-side.
-                            infinite={true}
-                            keyBoardControl={true}
-                            containerClass="carousel-container"
-                            removeArrowOnDeviceType={["tablet", "mobile"]}
-                            deviceType={this.props.deviceType}
-                            dotListClass="custom-dot-list-style"
-                            itemClass="carousel-item-padding-40-px">
+                    <Carousel
+                        className={classes.carouselStyle}
+                        swipeable={true}
+                        draggable={false}
+                        showDots={false}
+                        responsive={responsive}
+                        ssr={false} // means to render carousel on server-side.
+                        infinite={true}
+                        keyBoardControl={true}
+                        containerClass="carousel-container"
+                        removeArrowOnDeviceType={["tablet", "mobile"]}
+                        deviceType={this.props.deviceType}
+                        dotListClass="custom-dot-list-style"
+                        itemClass="carousel-item-padding-40-px">
 
-                            {singleTvShow}
-                        </Carousel>}
+                        {singleTvShow}
+                    </Carousel>
                     <br />
                     <h2>Family movies</h2>
-                    {this.state.error ? <ErrorHandler /> :
-                        <Carousel
-                            className={classes.carouselStyle}
-                            swipeable={true}
-                            draggable={false}
-                            showDots={false}
-                            responsive={responsive}
-                            ssr={false} // means to render carousel on server-side.
-                            infinite={true}
-                            keyBoardControl={true}
-                            containerClass="carousel-container"
-                            removeArrowOnDeviceType={["tablet", "mobile"]}
-                            deviceType={this.props.deviceType}
-                            dotListClass="custom-dot-list-style"
-                            itemClass="carousel-item-padding-40-px">
-                            {singleFamilyMovie}
-                        </Carousel>}
+                    <Carousel
+                        className={classes.carouselStyle}
+                        swipeable={true}
+                        draggable={false}
+                        showDots={false}
+                        responsive={responsive}
+                        ssr={false} // means to render carousel on server-side.
+                        infinite={true}
+                        keyBoardControl={true}
+                        containerClass="carousel-container"
+                        removeArrowOnDeviceType={["tablet", "mobile"]}
+                        deviceType={this.props.deviceType}
+                        dotListClass="custom-dot-list-style"
+                        itemClass="carousel-item-padding-40-px">
+                        {singleFamilyMovie}
+                    </Carousel>
                     <br />
                     <h2>Documentaries</h2>
-                    {this.state.error ? <ErrorHandler /> :
-                        <Carousel
-                            className={classes.carouselStyle}
-                            swipeable={true}
-                            draggable={false}
-                            showDots={false}
-                            responsive={responsive}
-                            ssr={false} // means to render carousel on server-side.
-                            infinite={true}
-                            keyBoardControl={true}
-                            containerClass="carousel-container"
-                            removeArrowOnDeviceType={["tablet", "mobile"]}
-                            deviceType={this.props.deviceType}
-                            dotListClass="custom-dot-list-style"
-                            itemClass="carousel-item-padding-40-px">
+                    <Carousel
+                        className={classes.carouselStyle}
+                        swipeable={true}
+                        draggable={false}
+                        showDots={false}
+                        responsive={responsive}
+                        ssr={false} // means to render carousel on server-side.
+                        infinite={true}
+                        keyBoardControl={true}
+                        containerClass="carousel-container"
+                        removeArrowOnDeviceType={["tablet", "mobile"]}
+                        deviceType={this.props.deviceType}
+                        dotListClass="custom-dot-list-style"
+                        itemClass="carousel-item-padding-40-px">
 
-                            {singleDocMovie}
-                        </Carousel>}
+                        {singleDocMovie}
+                    </Carousel>
                 </div>
-            </>
 
+            )
+        }
+
+        if (this.state.loading) {
+            show = <Spinner />
+        }
+
+        console.log(this.state.popMovies);
+
+
+        return (
+            <>
+                {show}
+            </>
         )
 
 

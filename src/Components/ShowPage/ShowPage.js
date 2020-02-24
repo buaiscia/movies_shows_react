@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-import instance from '../../HOC/axios-orders';
-import showItem from '../../middleware/showItem';
+import instance from '../../axios-orders';
+import showItem from '../../Components/Carousel/showItem';
 
-import Spinner from '../Spinner/Spinner'
-import ErrorHandler from '../../Components/ErrorHandler/ErrorHandler';
+import Spinner from '../UI/Spinner/Spinner'
+import GetErrorHandler from '../../Components/GetErrorHandler/GetErrorHandler';
 import withErrorHandler from '../../HOC/withErrorHandler/withErrorHandler';
 
 import config from '../../config/config'; //Import the config file where the API_KEY is present
@@ -128,7 +128,7 @@ class ShowPage extends Component {
         const singleDocMovie = showItem(allDocMovies);
 
 
-        let show = this.state.error ? <ErrorHandler /> : <Spinner />
+        let show = this.state.error ? <GetErrorHandler /> : <Spinner />
 
         if (this.state.popMovies.length > 0) {
             show = (

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Carousels from '../Components/Carousel/Carousel';
+import Carousels from './Carousel';
 
-function showItem  (showArray) {
+const showItem = (showArray) =>  {
     
     
     const pathImg = 'https://image.tmdb.org/t/p/w185'; //get default starting path for images for carousel

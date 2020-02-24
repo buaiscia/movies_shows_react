@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Item from './Components/Item/Item';
-import Layout from './Components/Layout/Layout'
+import Layout from './HOC/Layout/Layout'
 import ShowPage from './Components/ShowPage/ShowPage';
 import Search from './Components/Search/Search';
 import NotFound from './Components/NotFound/NotFound';

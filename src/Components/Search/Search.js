@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import ShowSearch from '../ShowSearch/ShowSearch';
 
-import ErrorHandler from '../ErrorHandler/ErrorHandler';
+import GetErrorHandler from '../GetErrorHandler/GetErrorHandler';
 import withErrorHandler from '../../HOC/withErrorHandler/withErrorHandler';
-import Spinner from '../Spinner/Spinner';
+import Spinner from '../UI/Spinner/Spinner';
 
-import instance from '../../HOC/axios-orders';
+import instance from '../../axios-orders';
 import config from '../../config/config';
-import showItem from '../../middleware/showItem';
+import showItem from '../../Components/Carousel/showItem';
 
 import classes from './Search.module.css';
 
@@ -100,7 +100,7 @@ class SearchBar extends Component {
 
             const allResults = [...this.state.results]
 
-            let shownSearch = this.state.error ? <ErrorHandler /> : <Spinner />
+            let shownSearch = this.state.error ? <GetErrorHandler /> : <Spinner />
 
             if (allResults.length > 0) {
                 shownSearch = <ShowSearch singleSearch={allResults} />    

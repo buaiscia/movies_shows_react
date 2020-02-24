@@ -1,5 +1,5 @@
 import React from 'react';
-import Toolbar from '../../Components/Navigation/Toolbar/Toolbar';
+import Toolbar from '../../Components/UI/Navigation/Toolbar/Toolbar';
 
 import classes from './Layout.module.css';
 

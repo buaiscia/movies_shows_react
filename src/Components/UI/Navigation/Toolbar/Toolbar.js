@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 
 import classes from './Toolbar.module.css'
-import navLogo from '../../../assets/images/tmdb.svg'
+import navLogo from '../../../../assets/images/tmdb.svg'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 

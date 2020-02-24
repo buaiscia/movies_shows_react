@@ -5,25 +5,20 @@ import classes from './Item.module.css'
 
 const Item = (props) => {
 
+    let locState = props.location.state; // get props from Carousel component
+
     let player = null;
-    const [isPlayer, setIsPlayer] = useState(false);    //assign state to isPlayer
+    const [isPlayer, setIsPlayer] = useState(false);
 
     // function called at pressing the esc button to close the full screen and exit the player
     const escFunction = () => {
 
         if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-            setIsPlayer(false); // set false to isPlayer
+            setIsPlayer(false);
         }
     }
 
     useEffect(() => {
-        function hide() {
-            // callback function to change states to show/hide main/search page
-            props.hideMainPage()
-            props.hideSearchPage()
-
-        }
-        hide(); //IIF after component mounted
 
         //listener for various browsers for checking the fullscreen option
         document.addEventListener('fullscreenchange', escFunction);
@@ -40,10 +35,10 @@ const Item = (props) => {
         }
     }, []);
 
-
+    // onclick setting player to true 
     const showPlayer = (e) => {
         e.preventDefault();
-        setIsPlayer(true); //set true to isPlayer
+        setIsPlayer(true);
     }
 
     // if player is true, show the component
@@ -51,14 +46,12 @@ const Item = (props) => {
         player = (<VideoPlayer image={props.location.state.poster} />)
     }
 
-    let locState = props.location.state; // get props from Carousel component
 
 
     return (
 
 
         <>
-            {/* pass all props from the Carousel component */}
             <div className={classes.mainDiv}>
                 <div className={classes.col1}>
                     <h1>{locState.title || locState.name}</h1>
@@ -66,13 +59,18 @@ const Item = (props) => {
                     <p>{locState.description}</p>
                     <hr />
                     <p>Popularity: {locState.popularity}</p>
-                    <p style={{ paddingBottom: "5%" }}>Vote: {locState.vote}</p>
+                    <p style={{ paddingBottom: '5%' }}>Vote: {locState.vote}</p>
+
                     {/* show the button if the player is unactive */}
                     {!player ? <button className={classes.buttonShow} onClick={showPlayer}>Watch the trailer</button> : null}
+
                     <br />
+
                     {/* show the player component */}
                     {player}
+
                 </div>
+
                 <div className={classes.col2}>
                     {locState.poster ?
                         <img alt={`${locState.title} poster`} src={locState.poster} />

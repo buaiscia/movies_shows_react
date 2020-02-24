@@ -5,12 +5,8 @@ class VideoPlayer extends Component {
     constructor(props) {
         super(props)
         this.videoComponent = React.createRef();
-
         this.onErrorEvent = this.onErrorEvent.bind(this);
-
-        this.onError = this.onError.bind(this);
-
-        
+        this.onError = this.onError.bind(this);      
     }
 
     onErrorEvent(event) {
@@ -29,7 +25,6 @@ class VideoPlayer extends Component {
         var manifestUri = `/content/sintel/hls/playlist.m3u8`;
 
         const video = this.videoComponent.current;
-
         var player = new shaka.Player(video);
         player.configure('manifest.defaultPresentationDelay', 0);
 
@@ -59,7 +54,6 @@ class VideoPlayer extends Component {
         return (
             <video
                 id='screen-player'
-                width="640"
                 ref={this.videoComponent}
                 poster={this.props.image}
                 controls

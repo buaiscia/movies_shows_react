@@ -10,18 +10,13 @@ function showItem  (showArray) {
     // parse the array and  pass each item to a variable
     return showArray.map((item) => {
         
-        let poster = item["poster_path"] ? pathImg + item["poster_path"] : null;
-        let title = item["title"];
-        let name = item["name"];
-        // if(item["poster_path"] === 'undefined') {
-        //     poster = null;
-        // } else {
-        //     poster = pathImg + item["poster_path"];
-        // }
-        let id = item["id"];
-        let description = item["overview"];
-        let popularity = item["popularity"];
-        let vote = item["vote_average"];
+        let poster = item['poster_path'] ? pathImg + item['poster_path'] : null;
+        let title = item['title'];
+        let name = item['name'];
+        let id = item['id'];
+        let description = item['overview'];
+        let popularity = item['popularity'];
+        let vote = item['vote_average'];
 
         // callback to return the Component  with props as the parsed array items
         return <Carousels 

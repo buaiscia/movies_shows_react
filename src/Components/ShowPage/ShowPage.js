@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-import instance from '../../HOC/axios-orders'; //Import a fixed instance of Axios 
-import showItem from '../../middleware/showItem';   //import a function to parse the show object and return its properties
+import instance from '../../HOC/axios-orders';
+import showItem from '../../middleware/showItem';
 
 import Spinner from '../Spinner/Spinner'
-import ErrorHandler from '../../Components/ErrorHandler/ErrorHandler'; // Comp. to appear in case of errors in fetching data
+import ErrorHandler from '../../Components/ErrorHandler/ErrorHandler';
 import withErrorHandler from '../../HOC/withErrorHandler/withErrorHandler';
 
 import config from '../../config/config'; //Import the config file where the API_KEY is present
@@ -16,18 +16,17 @@ import classes from './ShowPage.module.css';
 
 class ShowPage extends Component {
 
-    // create the initial states
 
     state = {
-        popMovies: [],  //array for storing all results from the popular movies
-        popTV: [], //array for storing all results from the popular tv shows
-        family: [], //array for storing all results from the movies in the family category
-        documentary: [], //array for storing all results from the movies in the documentary category
-        error: false,  //managing errors in fetching data
+        popMovies: [],
+        popTV: [],
+        family: [],
+        documentary: [],
+        error: false,
         loading: true
     }
 
-    
+
     componentDidMount() {
 
         // ALL FUNCTIONS FOR FETCHING DATA FROM TMDB AND STORING IN ITS STATES/ARRAYS
@@ -75,7 +74,7 @@ class ShowPage extends Component {
             superLargeDesktop: {
                 breakpoint: { max: 4000, min: 3000 },
                 items: 5,
-              },
+            },
             desktop: {
                 breakpoint: { max: 3000, min: 1024 },
                 items: 3,
@@ -94,11 +93,13 @@ class ShowPage extends Component {
         };
 
         ///  GATHER LIST OF MOVIES FROM THE ABOVE FETCHING
-        let movieShow = [...this.state.popMovies];                  //pass the state through a spread into a new array
+        let movieShow = [...this.state.popMovies];
         let allPopMovies = Object.keys(movieShow).map(mvKey => {
-            return movieShow[mvKey];                                //map the array  and return the item (single movie or single show object)
+            return movieShow[mvKey];
         });
-        const singleMovie = showItem(allPopMovies);      // call the function showItem with the object. showItem will get every key pair value and pass it as prop, and return the Carousel component as Symbol
+        const singleMovie = showItem(allPopMovies);      // call the function showItem with the object.  + 
+                                                        // showItem will get every key pair value and pass it as prop,  + 
+                                                        // and return the Carousel component as Symbol
 
 
         ///  GATHER LIST OF TV SHOWS FROM THE ABOVE FETCHING
@@ -126,30 +127,27 @@ class ShowPage extends Component {
 
         const singleDocMovie = showItem(allDocMovies);
 
+
         let show = this.state.error ? <ErrorHandler /> : <Spinner />
-
-
 
         if (this.state.popMovies.length > 0) {
             show = (
-
                 <div className={classes.mainShowPage}>
                     <h2>Popular movies</h2>
-                    {/* Show carousel if error false, otherwise Error component */}
                     <Carousel
                         className={classes.carouselStyle}
                         swipeable={true}
                         draggable={false}
                         showDots={false}
                         responsive={responsive}
-                        ssr={false} // means to render carousel on server-side.
+                        ssr={false}
                         infinite={true}
                         keyBoardControl={true}
-                        containerClass="carousel-container"
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
+                        containerClass='carousel-container'
+                        removeArrowOnDeviceType={['tablet', 'mobile']}
                         deviceType={this.props.deviceType}
-                        dotListClass="custom-dot-list-style"
-                        itemClass="carousel-item-padding-40-px">
+                        dotListClass='custom-dot-list-style'
+                        itemClass='carousel-item-padding-40-px'>
                         {singleMovie}
                     </Carousel>
                     <br />
@@ -160,14 +158,14 @@ class ShowPage extends Component {
                         draggable={false}
                         showDots={false}
                         responsive={responsive}
-                        ssr={false} // means to render carousel on server-side.
+                        ssr={false} 
                         infinite={true}
                         keyBoardControl={true}
-                        containerClass="carousel-container"
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
+                        containerClass='carousel-container'
+                        removeArrowOnDeviceType={['tablet', 'mobile']}
                         deviceType={this.props.deviceType}
-                        dotListClass="custom-dot-list-style"
-                        itemClass="carousel-item-padding-40-px">
+                        dotListClass='custom-dot-list-style'
+                        itemClass='carousel-item-padding-40-px'>
 
                         {singleTvShow}
                     </Carousel>
@@ -179,14 +177,14 @@ class ShowPage extends Component {
                         draggable={false}
                         showDots={false}
                         responsive={responsive}
-                        ssr={false} // means to render carousel on server-side.
+                        ssr={false} 
                         infinite={true}
                         keyBoardControl={true}
-                        containerClass="carousel-container"
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
+                        containerClass='carousel-container'
+                        removeArrowOnDeviceType={['tablet', 'mobile']}
                         deviceType={this.props.deviceType}
-                        dotListClass="custom-dot-list-style"
-                        itemClass="carousel-item-padding-40-px">
+                        dotListClass='custom-dot-list-style'
+                        itemClass='carousel-item-padding-40-px'>
                         {singleFamilyMovie}
                     </Carousel>
                     <br />
@@ -197,14 +195,14 @@ class ShowPage extends Component {
                         draggable={false}
                         showDots={false}
                         responsive={responsive}
-                        ssr={false} // means to render carousel on server-side.
+                        ssr={false} 
                         infinite={true}
                         keyBoardControl={true}
-                        containerClass="carousel-container"
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
+                        containerClass='carousel-container'
+                        removeArrowOnDeviceType={['tablet', 'mobile']}
                         deviceType={this.props.deviceType}
-                        dotListClass="custom-dot-list-style"
-                        itemClass="carousel-item-padding-40-px">
+                        dotListClass='custom-dot-list-style'
+                        itemClass='carousel-item-padding-40-px'>
 
                         {singleDocMovie}
                     </Carousel>
@@ -216,7 +214,6 @@ class ShowPage extends Component {
         if (this.state.loading) {
             show = <Spinner />
         }
-
 
 
         return (

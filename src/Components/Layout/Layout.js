@@ -6,13 +6,7 @@ import classes from './Layout.module.css';
 const Layout = (props) => {
     return (
         <div className={classes.Layout}>
-            {/* Calling Toolbar component which includes the Searchbar */}
-            <Toolbar
-                isHidden={props.isHidden}
-                isSearch={props.isSearch}
-                showSearchPage={props.showSearchPage} />
-
-            {/* Main HTML element where children component are visualized */}
+            <Toolbar />
             <main className={classes.mainClass}>
                 {props.children}
             </main>

@@ -1,33 +1,28 @@
 import React, { Component } from 'react';
-import { Redirect } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
 
 import classes from './Carousel.module.css';
 
 class Carousel extends Component {
 
     state = {
-        redirect: null, //define the redirect state to check when to do it
+        redirect: null
     };
 
+
     handleClick = () => {
-        // onclick image change redirect state 
-        this.setState({ redirect: '/show' }, () => {
-            if (this.props.onClick) {
-                this.props.onClick(this.state);
-            }
-        })
+        this.setState({ redirect: '/show' })
     }
 
 
     render() {
         let props = this.props;
 
-        // check if redirecting
         if (this.state.redirect) {
-            let red = this.state.redirect;
-            return <Redirect push to={{ //Connect to Route /show displaying Item component
-                pathname: red, // passing Redirect pathname
-                state: {       // passing different props to be used in Item component
+            // passing redirect state as pathname once clicked
+            return <Redirect push to={{
+                pathname: this.state.redirect, 
+                state: {
                     id: props.id,
                     title: props.title,
                     name: props.name,
@@ -36,8 +31,7 @@ class Carousel extends Component {
                     popularity: props.popularity,
                     vote: props.vote,
                 }
-            }
-            } />
+            }} />
         }
 
         return (
@@ -48,11 +42,11 @@ class Carousel extends Component {
                             className={classes.image}
                             alt={`${props.title || props.name} poster`}
                             src={props.poster} />
-                            : 
-                            (<div>
-                                <p>Poster not available</p>
-                            </div>)
-                }
+                        :
+                        (<div>
+                            <p>Poster not available</p>
+                        </div>)
+                    }
                     <p className={classes.title}>{props.title || props.name}</p>
                 </div>
             </>

@@ -26,15 +26,10 @@ As per notes below, the visualization of the HSL stream is possible only on IE/E
 ## Structure
 
    - [README.md](README.md)
+   - [jsconfig.json](jsconfig.json)
    - [node\_modules](node_modules)
    - [package\-lock.json](package-lock.json)
    - [package.json](package.json)
-   - __public__
-     - [index.html](public/index.html)
-     - [index.js](public/index.js)
-     - [manifest.json](public/manifest.json)
-     - [robots.txt](public/robots.txt)
-     - [tmdb.png](public/tmdb.png)
    - __src__
      - [App.css](src/App.css)
      - [App.js](src/App.js)
@@ -45,19 +40,13 @@ As per notes below, the visualization of the HSL stream is possible only on IE/E
          - [Carousel.test.js](src/Components/Carousel/Carousel.test.js)
          - __\_\_snapshots\_\___
            - [Carousel.test.js.snap](src/Components/Carousel/__snapshots__/Carousel.test.js.snap)
-       - __ErrorHandler__
-         - [ErrorHandler.css](src/Components/ErrorHandler/ErrorHandler.css)
-         - [ErrorHandler.js](src/Components/ErrorHandler/ErrorHandler.js)
+         - [showItem.js](src/Components/Carousel/showItem.js)
+       - __GetErrorHandler__
+         - [GetErrorHandler.css](src/Components/GetErrorHandler/GetErrorHandler.css)
+         - [GetErrorHandler.js](src/Components/GetErrorHandler/GetErrorHandler.js)
        - __Item__
          - [Item.js](src/Components/Item/Item.js)
          - [Item.module.css](src/Components/Item/Item.module.css)
-       - __Layout__
-         - [Layout.js](src/Components/Layout/Layout.js)
-         - [Layout.module.css](src/Components/Layout/Layout.module.css)
-       - __Navigation__
-         - __Toolbar__
-           - [Toolbar.js](src/Components/Navigation/Toolbar/Toolbar.js)
-           - [Toolbar.module.css](src/Components/Navigation/Toolbar/Toolbar.module.css)
        - __NotFound__
          - [NotFound.css](src/Components/NotFound/NotFound.css)
          - [NotFound.js](src/Components/NotFound/NotFound.js)
@@ -73,31 +62,29 @@ As per notes below, the visualization of the HSL stream is possible only on IE/E
        - __ShowSearch__
          - [ShowSearch.js](src/Components/ShowSearch/ShowSearch.js)
          - [ShowSearch.module.css](src/Components/ShowSearch/ShowSearch.module.css)
+       - __UI__
+         - __Navigation__
+           - __Toolbar__
+             - [Toolbar.js](src/Components/UI/Navigation/Toolbar/Toolbar.js)
+             - [Toolbar.module.css](src/Components/UI/Navigation/Toolbar/Toolbar.module.css)
+         - __Spinner__
+           - [Spinner.js](src/Components/UI/Spinner/Spinner.js)
+           - [Spinner.module.css](src/Components/UI/Spinner/Spinner.module.css)
        - __VideoPlayer__
          - [VideoPlayer.js](src/Components/VideoPlayer/VideoPlayer.js)
      - __HOC__
-       - [axios\-orders.js](src/HOC/axios-orders.js)
+       - __Layout__
+         - [Layout.js](src/HOC/Layout/Layout.js)
+         - [Layout.module.css](src/HOC/Layout/Layout.module.css)
+       - __withErrorHandler__
+         - [withErrorHandler.js](src/HOC/withErrorHandler/withErrorHandler.js)
      - __assets__
        - __images__
          - [tmdb.svg](src/assets/images/tmdb.svg)
+     - [axios\-orders.js](src/axios-orders.js)
      - __config__
        - [config.js](src/config/config.js)
      - [index.css](src/index.css)
      - [index.js](src/index.js)
-     - __middleware__
-       - [showItem.js](src/middleware/showItem.js)
      - [serviceWorker.js](src/serviceWorker.js)
      - [setupTests.js](src/setupTests.js)
-
-
-## Notes
-
-- I've added two small unit tests: one on the Carousel component and one on the ShowPage component (basic).
-
-- The main bug is about playing HLS stream in Shaka player in autoplay. As far as I found in the documentation, Firefox and Chrome have some flaws in decoding this kind of stream, while it's possible to stream it in Android and Internet Explorer/Edge. 
-
-- HLS stream works on Internet Explorer and Edge (apart from the auto full screen which is not supported on Edge), but on IE the whole application can be loaded only in build/production mode (and not development for incompatibily with some of JS ES6, even with added polyfills).
-
-- There is one error in console which depends on some image path on TMDB which doesn't exist.
-
-- There is one warning about useEffect, which was possible to forcibly ignore, but I decided to keep it as would be good practice to solve it in another way.

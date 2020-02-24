@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import muxjs from 'mux.js';
+import muxjs from 'mux.js'; // importing Mux.js for converting coding
 import shaka from 'shaka-player';
 
 class VideoPlayer extends Component {
@@ -8,7 +8,7 @@ class VideoPlayer extends Component {
         this.videoComponent = React.createRef();
         this.onErrorEvent = this.onErrorEvent.bind(this);
         this.onError = this.onError.bind(this);      
-        window.muxjs = muxjs;
+        window.muxjs = muxjs; // passing mux to the global environment
     }
 
     onErrorEvent(event) {

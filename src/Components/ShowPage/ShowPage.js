@@ -7,7 +7,6 @@ import showItem from '../../Components/Carousel/showItem';
 
 import Spinner from '../UI/Spinner/Spinner'
 import GetErrorHandler from '../../Components/GetErrorHandler/GetErrorHandler';
-import withErrorHandler from '../../HOC/withErrorHandler/withErrorHandler';
 
 import config from '../../config/config'; //Import the config file where the API_KEY is present
 
@@ -227,4 +226,4 @@ class ShowPage extends Component {
     }
 }
 
-export default withErrorHandler(ShowPage, instance);
+export default ShowPage;

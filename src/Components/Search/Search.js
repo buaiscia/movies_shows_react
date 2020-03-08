@@ -3,7 +3,6 @@ import { Form, FormControl, Button } from 'react-bootstrap';
 import ShowSearch from '../ShowSearch/ShowSearch';
 
 import GetErrorHandler from '../GetErrorHandler/GetErrorHandler';
-import withErrorHandler from '../../HOC/withErrorHandler/withErrorHandler';
 import Spinner from '../UI/Spinner/Spinner';
 
 import instance from '../../axios-orders';
@@ -127,4 +126,4 @@ class SearchBar extends Component {
 
 
 
-export default withErrorHandler(SearchBar, instance);
+export default SearchBar;

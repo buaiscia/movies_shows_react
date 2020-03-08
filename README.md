@@ -4,6 +4,10 @@ Frontend application using The Movie Database API. Built with React.
 
 ## Getting started
 
+Clone the repo locally
+
+```git clone 'link' ```
+
 Install packages
 
 ```npm install```
@@ -88,3 +92,7 @@ As per notes below, the visualization of the HSL stream is possible only on IE/E
      - [index.js](src/index.js)
      - [serviceWorker.js](src/serviceWorker.js)
      - [setupTests.js](src/setupTests.js)
+
+## Notes
+
+The Play button doesn't play the actual trailer but an HLS standard streaming video via Shaka player, made it compatible with all browsers.
